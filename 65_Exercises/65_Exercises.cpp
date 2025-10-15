@@ -27,7 +27,7 @@
  *    - Tables, converters, swaps, medical screening
  */
 
-// Include necessary headers for input/output, mathematical operations, and string handling
+// Include necessary headers
 #include <iostream>
 #include <cmath>
 #include <iomanip>
@@ -35,6 +35,8 @@
 #include <array>
 #include <map>
 #include <cctype>
+#include <vector>
+#include <algorithm>
 
 using namespace std;
 
@@ -1590,7 +1592,7 @@ public:
             cout << "Name: " << name << "\nAge: " << age << "\nOccupation: " << occupation << endl;
         }
     };
-    
+
     // Create a People class that holds a person's name, age, and occupation.
     void program51_PeopleClass()
     {
@@ -1620,7 +1622,10 @@ public:
         // Menu loop
         do
         {
-            cout << "Choose an option: \n1. Get Name\n2. Get Age\n3. Get Occupation\n4. Set Name\n5. Set Age\n6. Set Occupation\n7. Display Summary of the person.\n0. Exit ";
+            cout << "\n========================================\n";
+            cout << "  People Menu  \n";
+            cout << "========================================\n";
+            cout << "Choose an option: \n1. Get Name\n2. Get Age\n3. Get Occupation\n4. Set Name\n5. Set Age\n6. Set Occupation\n7. Display Summary of the person.\n0. Exit:\t";
             cin >> option;
             switch (option)
             {
@@ -1703,7 +1708,7 @@ public:
     };
 
     // Test a Virtual Pet that can be fed, played with, sleeps, and can display its status.
-    void program53_VirtualPet()
+    void program53_VirtualPetClass()
     {
         cout << "\n========================================\n";
         cout << "  Virtual Pet Simulator  \n";
@@ -1718,7 +1723,10 @@ public:
         int option;
         do
         {
-            cout << "Choose an option: 1) Feed 2) Play 3) Rest 4) Status 0) Exit: ";
+            cout << "========================================\n";
+            cout << "  Virtual Pet Menu  \n";
+            cout << "========================================\n";
+            cout << "Choose an option: \n1. Feed\n2. Play\n3. Rest\n4. Status\n0. Exit:\t";
             cin >> option;
             if (option == 1)
             {
@@ -1751,9 +1759,152 @@ public:
         wait();
     }
 
-    void program54_TacoClass() {
+    class Taco
+    {
+    private:
+        string shellType;
+        double price;
+        vector<string> toppings;
 
+    public:
+        // Constructors
+        Taco(string tacoShellType, double tacoPrice, vector<string> tacoToppings)
+            : shellType(tacoShellType), price(tacoPrice), toppings(tacoToppings) {}
+
+        // Getters
+        void getShellType()
+        {
+            cout << "Shell Type: " << shellType << endl;
+        }
+
+        void getPrice()
+        {
+            cout << "Price: $" << price << endl;
+        }
+
+        void getToppings()
+        {
+            cout << "Toppings: ";
+            for (const auto &topping : toppings)
+                cout << topping << " ";
+            cout << endl;
+        }
+
+        // Setters
+        string setShellType(string newShellType)
+        {
+            shellType = newShellType;
+            return shellType;
+        }
+
+        double setPrice(double newPrice)
+        {
+            price = newPrice;
+            return price;
+        }
+
+        void addTopping(string newTopping)
+        {
+            toppings.push_back(newTopping);
+        }
+
+        void removeTopping(string toppingToRemove)
+        {
+            // Find the position of the topping to remove
+            auto it = find(toppings.begin(), toppings.end(), toppingToRemove);
+            // If found, remove it
+            if (it != toppings.end())
+                toppings.erase(it);
+        }
+
+        // Display Method
+        void displayInfo()
+        {
+            cout << "Taco Shell Type: " << shellType << "\nPrice: $" << price << "\nToppings: ";
+            for (const auto &topping : toppings)
+                cout << topping << " ";
+            cout << endl;
+        }
     };
+
+    // Create a Taco class with methods to get and set the shell type, price, and toppings.
+    void program54_TacoClass()
+    {
+        cout << "\n========================================\n";
+        cout << "  Taco Class Simulation  \n";
+        cout << "========================================\n";
+
+        // Variable declarations
+        string shellType;
+        double price;
+        vector<string> toppings;
+        int option;
+
+        // User input
+        cout << "Please enter the shell type for the taco: ";
+        cin >> shellType;
+
+        cout << "Please enter the price for the taco: ";
+        cin >> price;
+
+        cout << "Please enter the toppings for the taco (separated by spaces, end with \"end\" to stop adding topping): ";
+        string topping;
+        while (cin >> topping && topping != "end" || topping != "END")
+        {
+            toppings.push_back(topping);
+        }
+
+        // Create Taco object
+        Taco taco(shellType, price, toppings);
+
+        // Menu loop
+        do
+        {
+            cout << "========================================\n";
+            cout << "  Taco Menu  \n";
+            cout << "========================================\n";
+            cout << "Choose an option: \n1. Get Shell Type\n2. Get Price\n3. Get Toppings\n4. Set Shell Type\n5. Set Price\n6. Add Topping\n7. Remove Topping\n8. Display Taco Info\n0. Exit:\t";
+            cin >> option;
+            switch (option)
+            {
+            case 1:
+                taco.getShellType();
+                break;
+            case 2:
+                taco.getPrice();
+                break;
+            case 3:
+                taco.getToppings();
+                break;
+            case 4:
+                cout << "Enter new shell type: ";
+                cin >> shellType;
+                taco.setShellType(shellType);
+                break;
+            case 5:
+                cout << "Enter new price: ";
+                cin >> price;
+                taco.setPrice(price);
+                break;
+            case 6:
+                cout << "Enter topping to add: ";
+                cin >> topping;
+                taco.addTopping(topping);
+                break;
+            case 7:
+                cout << "Enter topping to remove: ";
+                cin >> topping;
+                taco.removeTopping(topping);
+                break;
+            case 8:
+                taco.displayInfo();
+                break;
+            }
+        } while (option != 0);
+
+        cout << "Exiting Taco Simulator.\n";
+        wait();
+    }
 
     void program55_PizzaClass() {
 
@@ -2070,10 +2221,23 @@ class InteractiveFunMenu : MainMenuSubMenu
 private:
     map<int, string> choices = {
         {1, "Quiz Game"},
-        {2, "T-Shirt Personalization"},
-        {3, "People Simulator"},
-        {5, "Virtual Pet Simulator"},
-        {6, "Bank Account Simulator"},
+        {2, "T-Shirt Personalization Questionnaire"},
+        {3, "Custom Game"},
+        {4, "People Simulator"},
+        {5, "Time Machine Simulator"},
+        {6, "Virtual Pet Simulator"},
+        {7, "Taco Simulator"},
+        {8, "Pizza Simulator"},
+        {9, "Dog Simulator"},
+        {10, "Fast Food Simulator"},
+        {11, "Rectangle Simulator"},
+        {12, "Dancing Robot Simulator"},
+        {13, "Superhero Simulator"},
+        {14, "Monster Simulator"},
+        {15, "Treasure Simulator"},
+        {16, "Bank Account Simulator"},
+        {17, "Employee Simulator"},
+        {18, "Movie Simulator"},
         {0, "RETURN TO MAIN MENU"}};
 
 public:
@@ -2109,15 +2273,63 @@ public:
             return 1;
             break;
         case 3:
+            parent->program50_Game();
+            return 1;
+            break;
+        case 4:
             parent->program51_PeopleClass();
             return 1;
             break;
         case 5:
-            parent->program53_VirtualPet();
+            parent->program53_VirtualPetClass();
             return 1;
             break;
         case 6:
+            parent->program54_TacoClass();
+            return 1;
+            break;
+        case 7:
+            parent->program55_PizzaClass();
+            return 1;
+            break;
+        case 8:
+            parent->program56_DogClass();
+            return 1;
+            break;
+        case 9:
+            parent->program57_FastFoodClass();
+            return 1;
+            break;
+        case 10:
+            parent->program58_RectangleClass();
+            return 1;
+            break;
+        case 11:
+            parent->program59_DancingRobotClass();
+            return 1;
+            break;
+        case 12:
+            parent->program60_SuperheroClass();
+            return 1;
+            break;
+        case 13:
+            parent->program61_MonsterClass();
+            return 1;
+            break;
+        case 14:
+            parent->program63_TreasureClass();
+            return 1;
+            break;
+        case 15:
             parent->program63_BankAccountClass();
+            return 1;
+            break;
+        case 16:
+            parent->program64_EmployeeClass();
+            return 1;
+            break;
+        case 17:
+            parent->program65_MovieClass();
             return 1;
             break;
         case 0:
