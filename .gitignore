@@ -42,3 +42,5 @@
 
 # Built Visual Studio Code Extensions
 *.vsix
+.vscode/tasks.json
+Advanced-Programming-Cpp.code-workspace
