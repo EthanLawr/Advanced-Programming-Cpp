@@ -2321,64 +2321,62 @@ public:
         int salesCount;
 
         map<int, pair<double, string>> menuItems = {
-                // Burgers
-                {1, {5.99, "Classic Cheeseburger"}},
-                {2, {6.49, "Bacon Double Burger"}},
-                {3, {7.29, "BBQ Burger"}},
-                {4, {6.79, "Mushroom Swiss Burger"}},
-                {5, {4.99, "Veggie Burger"}},
+            // Burgers
+            {1, {5.99, "Classic Cheeseburger"}},
+            {2, {6.49, "Bacon Double Burger"}},
+            {3, {7.29, "BBQ Burger"}},
+            {4, {6.79, "Mushroom Swiss Burger"}},
+            {5, {4.99, "Veggie Burger"}},
 
-                // Sandwiches & Wraps
-                {6, {5.49, "Grilled Chicken Sandwich"}},
-                {7, {4.99, "Crispy Chicken Sandwich"}},
-                {8, {5.79, "Spicy Chicken Wrap"}},
-                {9, {4.79, "Turkey BLT Wrap"}},
+            // Sandwiches & Wraps
+            {6, {5.49, "Grilled Chicken Sandwich"}},
+            {7, {4.99, "Crispy Chicken Sandwich"}},
+            {8, {5.79, "Spicy Chicken Wrap"}},
+            {9, {4.79, "Turkey BLT Wrap"}},
 
-                // Sides
-                {10, {2.49, "French Fries"}},
-                {11, {2.99, "Curly Fries"}},
-                {12, {3.29, "Onion Rings"}},
-                {13, {2.19, "Side Salad"}},
-                {14, {1.99, "Coleslaw"}},
+            // Sides
+            {10, {2.49, "French Fries"}},
+            {11, {2.99, "Curly Fries"}},
+            {12, {3.29, "Onion Rings"}},
+            {13, {2.19, "Side Salad"}},
+            {14, {1.99, "Coleslaw"}},
 
-                // Tacos & Burritos
-                {15, {2.99, "Beef Taco"}},
-                {16, {3.29, "Chicken Taco"}},
-                {17, {6.49, "Beef Burrito"}},
-                {18, {6.99, "Chicken Burrito"}},
-                {19, {7.49, "Loaded Nachos"}},
+            // Tacos & Burritos
+            {15, {2.99, "Beef Taco"}},
+            {16, {3.29, "Chicken Taco"}},
+            {17, {6.49, "Beef Burrito"}},
+            {18, {6.99, "Chicken Burrito"}},
+            {19, {7.49, "Loaded Nachos"}},
 
-                // Pizza
-                {20, {8.99, "Small Pepperoni Pizza"}},
-                {21, {10.99, "Medium Cheese Pizza"}},
-                {22, {12.99, "Large Supreme Pizza"}},
-                {23, {9.99, "Meat Lovers Pizza"}},
+            // Pizza
+            {20, {8.99, "Small Pepperoni Pizza"}},
+            {21, {10.99, "Medium Cheese Pizza"}},
+            {22, {12.99, "Large Supreme Pizza"}},
+            {23, {9.99, "Meat Lovers Pizza"}},
 
-                // Combo Meals
-                {24, {9.49, "Burger Combo (Fries + Drink)"}},
-                {25, {9.79, "Chicken Sandwich Combo"}},
-                {26, {10.49, "BBQ Burger Combo"}},
-                {27, {8.99, "Veggie Combo"}},
+            // Combo Meals
+            {24, {9.49, "Burger Combo (Fries + Drink)"}},
+            {25, {9.79, "Chicken Sandwich Combo"}},
+            {26, {10.49, "BBQ Burger Combo"}},
+            {27, {8.99, "Veggie Combo"}},
 
-                // Drinks
-                {28, {1.49, "Bottled Water"}},
-                {29, {1.99, "Soft Drink"}},
-                {30, {2.29, "Iced Tea"}},
-                {31, {2.49, "Milkshake"}},
-                {32, {2.79, "Iced Coffee"}},
+            // Drinks
+            {28, {1.49, "Bottled Water"}},
+            {29, {1.99, "Soft Drink"}},
+            {30, {2.29, "Iced Tea"}},
+            {31, {2.49, "Milkshake"}},
+            {32, {2.79, "Iced Coffee"}},
 
-                // Desserts
-                {33, {2.99, "Vanilla Ice Cream"}},
-                {34, {3.49, "Chocolate Sundae"}},
-                {35, {3.79, "Apple Pie"}},
-                {36, {4.19, "Brownie Sundae"}},
-                {37, {3.99, "Oreo McFlurry"}}
-            };
+            // Desserts
+            {33, {2.99, "Vanilla Ice Cream"}},
+            {34, {3.49, "Chocolate Sundae"}},
+            {35, {3.79, "Apple Pie"}},
+            {36, {4.19, "Brownie Sundae"}},
+            {37, {3.99, "Oreo McFlurry"}}};
 
     public:
         FastFood() : restaurantName("McDonalds Inc."), salesCount(0), totalSales(0.0) {}
-        FastFood(string name) : restaurantName(name), salesCount(0), totalSales(0.0){}
-
+        FastFood(string name) : restaurantName(name), salesCount(0), totalSales(0.0) {}
 
         // Set Restaurant Name
         void setRestaurantName(string name)
@@ -2485,12 +2483,13 @@ public:
         }
     };
 
-    void program57_FastFoodClass() {
+    void program57_FastFoodClass()
+    {
 
         cout << "\n========================================\n";
         cout << "  Fast Food Restaurant Simulator  \n";
         cout << "========================================\n";
-        
+
         // Variable declarations
         int itemNumber, option;
         string restaurantName;
@@ -2557,42 +2556,51 @@ public:
 
     class Rectangle
     {
-        private:
-            double length;
-            double width;
-        public:
-            Rectangle() : length(1.0), width(1.0) {} // Default
-            Rectangle(double l, double w) : length(l), width(w) {}
-            void getLength() const { 
-                cout << "The length of this rectangle is: " << length << endl;
-            }
-            void getWidth() const { 
-                cout << "The width of this rectangle is: " << width << endl;
-            }
-            void setLength() { 
-                double l;
-                cout << "Enter new length: ";
-                cin >> l;
-                length = l;
-            }
-            void setWidth() { 
-                double w;
-                cout << "Enter new width: ";
-                cin >> w;
-                width = w;
-            }
-            void area() const { 
-                cout << "The area of this rectangle is: " << length * width << endl;
-            }
-            void perimeter() const { 
-                cout << "The perimeter of this rectangle is: " << 2 * (length + width) << endl;
-            }
-            void displayInfo() const {
-                cout << "Length: " << length << ", Width: " << width << ", Area: " << length * width << ", Perimeter: " << 2 * (length + width) << endl;
-            }
+    private:
+        double length;
+        double width;
+
+    public:
+        Rectangle() : length(1.0), width(1.0) {} // Default
+        Rectangle(double l, double w) : length(l), width(w) {}
+        void getLength() const
+        {
+            cout << "The length of this rectangle is: " << length << endl;
+        }
+        void getWidth() const
+        {
+            cout << "The width of this rectangle is: " << width << endl;
+        }
+        void setLength()
+        {
+            double l;
+            cout << "Enter new length: ";
+            cin >> l;
+            length = l;
+        }
+        void setWidth()
+        {
+            double w;
+            cout << "Enter new width: ";
+            cin >> w;
+            width = w;
+        }
+        void area() const
+        {
+            cout << "The area of this rectangle is: " << length * width << endl;
+        }
+        void perimeter() const
+        {
+            cout << "The perimeter of this rectangle is: " << 2 * (length + width) << endl;
+        }
+        void displayInfo() const
+        {
+            cout << "Length: " << length << ", Width: " << width << ", Area: " << length * width << ", Perimeter: " << 2 * (length + width) << endl;
+        }
     };
 
-    void program58_RectangleClass() {
+    void program58_RectangleClass()
+    {
         cout << "\n========================================\n";
         cout << "  Rectangle Class Demonstration  \n";
         cout << "========================================\n";
@@ -2611,36 +2619,38 @@ public:
         Rectangle rect(length, width);
 
         // Menu loop
-        do {
+        do
+        {
             cout << "========================================\n";
             cout << "  Rectangle Menu  \n";
             cout << "========================================\n";
             cout << "Choose an option: \n1. Get Length\n2. Get Width\n3. Set Length\n4. Set Width\n5. Calculate Area\n6. Calculate Perimeter\n7. Display Info\n0. Exit:\t";
             cin >> option;
-            switch(option) {
-                case 1:
-                    rect.getLength();
-                    break;
-                case 2:
-                    rect.getWidth();
-                    break;
-                case 3:
-                    rect.setLength();
-                    break;
-                case 4:
-                    rect.setWidth();
-                    break;
-                case 5:
-                    rect.area();
-                    break;
-                case 6:
-                    rect.perimeter();
-                    break;
-                case 7:
-                    rect.displayInfo();
-                    break;
+            switch (option)
+            {
+            case 1:
+                rect.getLength();
+                break;
+            case 2:
+                rect.getWidth();
+                break;
+            case 3:
+                rect.setLength();
+                break;
+            case 4:
+                rect.setWidth();
+                break;
+            case 5:
+                rect.area();
+                break;
+            case 6:
+                rect.perimeter();
+                break;
+            case 7:
+                rect.displayInfo();
+                break;
             }
-        } while(option != 0);
+        } while (option != 0);
 
         cout << "Exiting Rectangle Demo.\n";
         wait();
@@ -2767,12 +2777,342 @@ public:
         wait();
     }
 
+    class Employee
+    {
+    };
+
     void program64_EmployeeClass()
     {
     }
 
+    class Movie
+    {
+    private:
+        string title;
+        int releaseYear;
+        double rating;
+        int duration; // in minutes
+        vector<string> genre;
+        vector<string> directors;
+        vector<string> writers;
+        vector<string> stars;
+
+    public:
+        Movie() : title("Shawshank Redemption"), releaseYear(1994), rating(9.3), duration(142), genre({"Drama"}),
+                  directors({"Frank Darabont"}), writers({"Frank Darabont", "Stephen King"}), stars({"Tim Robbins", "Morgan Freeman", "Bob Gunton"}) {}
+        Movie(string t, int y, double r, int d, vector<string> g, vector<string> dir, vector<string> w, vector<string> s)
+            : title(t), releaseYear(y), rating(r), duration(d), genre(g), directors(dir), writers(w), stars(s) {}
+
+        // Getters
+        void getTitle() const
+        {
+            cout << "Title: " << title << endl;
+        }
+
+        void getReleaseYear() const
+        {
+            cout << "Release Year: " << releaseYear << endl;
+        }
+
+        void getRating() const
+        {
+            cout << "Rating: " << rating << endl;
+        }
+
+        void getDuration() const
+        {
+            cout << "Duration: " << duration << " minutes" << endl;
+        }
+
+        void getGenre() const
+        {
+            cout << "Genre: ";
+            for (const auto &g : genre)
+                cout << g << " ";
+            cout << endl;
+        }
+
+        void getDirectors() const
+        {
+            cout << "Directors: ";
+            for (const auto &d : directors)
+                cout << d << " ";
+            cout << endl;
+        }
+
+        void getWriters() const
+        {
+            cout << "Writers: ";
+            for (const auto &w : writers)
+                cout << w << " ";
+            cout << endl;
+        }
+
+        void getStars() const
+        {
+            cout << "Stars: ";
+            for (const auto &s : stars)
+                cout << s << " ";
+            cout << endl;
+        }
+
+        // Setters
+        void setTitle()
+        {
+            string newTitle;
+            cout << "Enter new title: ";
+            cin >> newTitle;
+            title = newTitle;
+        }
+
+        void setReleaseYear()
+        {
+            int newYear;
+            cout << "Enter new release year: ";
+            cin >> newYear;
+            releaseYear = newYear;
+        }
+
+        void setRating()
+        {
+            double newRating;
+            cout << "Enter new rating: ";
+            cin >> newRating;
+            rating = newRating;
+        }
+
+        void setDuration()
+        {
+            int newDuration;
+            cout << "Enter new duration (in minutes): ";
+            cin >> newDuration;
+            duration = newDuration;
+        }
+
+        void setGenre()
+        {
+            genre.clear();
+            string newGenre;
+            cout << "Enter genres (type 'done' to finish): ";
+            while (true)
+            {
+                cin >> newGenre;
+                if (newGenre == "done")
+                    break;
+                genre.push_back(newGenre);
+            }
+        }
+
+        void setDirectors()
+        {
+            directors.clear();
+            string newDirector;
+            cout << "Enter directors (type 'done' to finish): ";
+            while (true)
+            {
+                cin >> newDirector;
+                if (newDirector == "done")
+                    break;
+                directors.push_back(newDirector);
+            }
+        }
+
+        void setWriters()
+        {
+            writers.clear();
+            string newWriter;
+            cout << "Enter writers (type 'done' to finish): ";
+            while (true)
+            {
+                cin >> newWriter;
+                if (newWriter == "done")
+                    break;
+                writers.push_back(newWriter);
+            }
+        }
+
+        void setStars()
+        {
+            stars.clear();
+            string newStar;
+            cout << "Enter stars (type 'done' to finish): ";
+            while (true)
+            {
+                cin >> newStar;
+                if (newStar == "done")
+                    break;
+                stars.push_back(newStar);
+            }
+        }
+        // Display Method
+        void displayInfo() const
+        {
+            cout << "Title: " << title << endl;
+            cout << "Release Year: " << releaseYear << endl;
+            cout << "Rating: " << rating << endl;
+            cout << "Duration: " << duration << " minutes" << endl;
+
+            cout << "Genre: ";
+            for (const auto &g : genre)
+                cout << g << " ";
+            cout << endl;
+
+            cout << "Directors: ";
+            for (const auto &d : directors)
+                cout << d << " ";
+            cout << endl;
+
+            cout << "Writers: ";
+            for (const auto &w : writers)
+                cout << w << " ";
+            cout << endl;
+
+            cout << "Stars: ";
+            for (const auto &s : stars)
+                cout << s << " ";
+            cout << endl;
+        }
+    };
+    
     void program65_MovieClass()
     {
+        cout << "\n========================================\n";
+        cout << "  Movie Class Demonstration  \n";
+        cout << "========================================\n";
+
+        // Variable declarations
+        string title;
+        int releaseYear, duration, option;
+        double rating;
+        vector<string> genre, directors, writers, stars;
+        string input;
+
+        // User input
+        cout << "Would you like to create a custom movie? (y/n): ";
+        cin >> input;
+        Movie movie;
+
+        // Decided to utilize the implemented default constructor if user chooses 'n'
+        if (input == "y" || input == "Y")
+        {
+            cout << "Enter movie title: ";
+            cin >> title;
+            cout << "Enter release year: ";
+            cin >> releaseYear;
+            cout << "Enter rating: ";
+            cin >> rating;
+            cout << "Enter duration (in minutes): ";
+            cin >> duration;
+
+            cout << "Enter genres (type 'done' to finish): ";
+            string g;
+            while (true)
+            {
+                cin >> g;
+                if (g == "done")
+                    break;
+                genre.push_back(g);
+            }
+
+            cout << "Enter directors (type 'done' to finish): ";
+            string d;
+            while (true)
+            {
+                cin >> d;
+                if (d == "done")
+                    break;
+                directors.push_back(d);
+            }
+
+            cout << "Enter writers (type 'done' to finish): ";
+            string w;
+            while (true)
+            {
+                cin >> w;
+                if (w == "done")
+                    break;
+                writers.push_back(w);
+            }
+
+            cout << "Enter stars (type 'done' to finish): ";
+            string s;
+            while (true)
+            {
+                cin >> s;
+                if (s == "done")
+                    break;
+                stars.push_back(s);
+            }
+
+            movie = Movie(title, releaseYear, rating, duration, genre, directors, writers, stars);
+        }
+
+        // Menu loop
+        do
+        {
+            cout << "========================================\n";
+            cout << "  Movie Menu  \n";
+            cout << "========================================\n";
+            cout << "Choose an option: \n1. Get Title\n2. Get Release Year\n3. Get Rating\n4. Get Duration\n5. Get Genre\n6. Get Directors\n7. Get Writers\n8. Get Stars\n9. Set Title\n10. Set Release Year\n11. Set Rating\n12. Set Duration\n13. Set Genre\n14. Set Directors\n15. Set Writers\n16. Set Stars\n17. Display Info\n0. Exit:\t";
+            cin >> option;
+            switch (option)
+            {
+            case 1:
+                movie.getTitle();
+                break;
+            case 2:
+                movie.getReleaseYear();
+                break;
+            case 3:
+                movie.getRating();
+                break;
+            case 4:
+                movie.getDuration();
+                break;
+            case 5:
+                movie.getGenre();
+                break;
+            case 6:
+                movie.getDirectors();
+                break;
+            case 7:
+                movie.getWriters();
+                break;
+            case 8:
+                movie.getStars();
+                break;
+            case 9:
+                movie.setTitle();
+                break;
+            case 10:
+                movie.setReleaseYear();
+                break;
+            case 11:
+                movie.setRating();
+                break;
+            case 12:
+                movie.setDuration();
+                break;
+            case 13:
+                movie.setGenre();
+                break;
+            case 14:
+                movie.setDirectors();
+                break;
+            case 15:
+                movie.setWriters();
+                break;
+            case 16:
+                movie.setStars();
+                break;
+            case 17:
+                movie.displayInfo();
+                break;
+            }
+        } while (option != 0);
+
+        cout << "Exiting Movie Demo.\n";
+        wait();
     }
 
     //
