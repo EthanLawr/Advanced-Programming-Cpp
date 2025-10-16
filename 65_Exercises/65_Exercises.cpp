@@ -1,6 +1,6 @@
 // Ethan Lawrence - Sylva Virtual Assistant
-// Date: 09/01/2025 - 09/30/2025
-// Complete 40 Exercise Collection
+// Date: 09/01/2025 - 10/16/2025
+// Complete 65 Exercises Collection
 
 /**
  * SYLVA VIRTUAL ASSISTANT - ALL 40 PROGRAMS
@@ -8,23 +8,27 @@
  *
  * CATEGORIES:
  *
- * 1. Number Operations (1-10, 18-19, 21-28)
- *    - Basic arithmetic, comparisons, equation solvers, conversions
+ * 1. Number Operations
+ *    - Basic arithmetic, comparisons, equation solvers
  *
- * 2. Interactive Fun (29-30)
+ * 2. Interactive Fun
  *    - Quizzes and personalization
+ *    - Custom Class Simulations
  *
- * 3. Array Operations - 1D (31-35)
+ * 3. Array Operations - 1D
  *    - Single and dual array operations
  *
- * 4. Matrix Operations - 2D (36-37)
+ * 4. Matrix Operations - 2D
  *    - 2x2 matrix calculations
  *
- * 5. Functions (38-40)
+ * 5. Functions
  *    - Utility functions for integers
  *
- * 6. Additional Utilities (11-17, 20)
- *    - Tables, converters, swaps, medical screening
+ * 6. Additional Utilities
+ *    - Unit Converters
+ *
+ * 7. Medical Screening
+ *   - ADHD risk assessment
  */
 
 // Include necessary headers
@@ -1354,7 +1358,7 @@ public:
     // Programs 41-65: (3rd Set of Problems)
     // ========================================
 
-    // Program 41: Calculates area of a triangle given base and height (cm)
+    // Calculates area of a triangle given base and height (cm)
     void program41_area_of_triangle()
     {
         // No new concepts to note here.
@@ -2514,6 +2518,8 @@ public:
         }
     };
 
+    // Create a Fast Food class. You have the creative freedom to decide what attributes and methods it should have.
+    // I have decided to make a fast food restaurant simulator in which you can add and remove items from an order, complete the order, and view the menu.
     void program57_FastFoodClass()
     {
 
@@ -2630,6 +2636,9 @@ public:
         }
     };
 
+    // Create a Rectangle class. You have the creative freedom to decide what attributes and methods it should have.
+    // I have decided to make a rectangle class with methods to get and set the length and width, calculate the area
+    // and perimeter, and display the rectangle's information.
     void program58_RectangleClass()
     {
         cout << "\n========================================\n";
@@ -2689,9 +2698,125 @@ public:
 
     class DancingRobot
     {
+    private:
+        string name;
+        int energy;
+        string danceStyle;
+        int danceCount;
+    public:
+        DancingRobot() : name("RoboDancer"), energy(100), danceStyle("Hip Hop"), danceCount(0) {} // Default constructor
+        DancingRobot(string robotName, int robotEnergy, string robotDanceStyle)
+            : name(robotName), energy(robotEnergy), danceStyle(robotDanceStyle), danceCount(0) {}
+        void getName() const { 
+            cout << "Robot Name: " << name << endl;
+         }
+        void getEnergy() const { 
+            cout << "Energy Level: " << energy << endl;
+            }
+        void getDanceStyle() const { 
+            cout << "Dance Style: " << danceStyle << endl;
+            }
+        void dance() { 
+            if (energy >= 10) {
+                energy -= 10; 
+                danceCount++; 
+                cout << name << " is dancing in the dancing style of " << danceStyle << "! Energy left: " << energy << endl; 
+            } else {
+                cout << name << " is too tired to dance. Please recharge the robot!" << endl; 
+            }
+        }
+
+        void recharge() {
+            energy = 100;
+            cout << name << " has been recharged. Energy level is now: " << energy << endl;
+        }
+
+        void changeDanceStyle(string newStyle) {
+            danceStyle = newStyle;
+            cout << name << " has changed dance style to: " << danceStyle << endl;
+        }
+
+        int getDanceCount() const {
+            return danceCount;
+        }
+
+        void displayInfo() const {
+            cout << "Robot Name: " << name << endl;
+            cout << "Energy Level: " << energy << endl;
+            cout << "Dance Style: " << danceStyle << endl;
+            cout << "Total Dances Performed: " << danceCount << endl;
+        }
     };
 
+    // Create a Dancing Robot class. You have the creative freedom to decide what attributes and methods it should have.
+    // I have decided to make a dancing robot class with methods to get and set the name, energy level, and dance style,
+    // make the robot dance (which decreases energy), recharge the robot (which resets energy to 100), change the dance style,
+    // and display the robot's information.
     void program59_DancingRobotClass() {
+        cout << "\n========================================\n";
+        cout << "  Dancing Robot Simulator  \n";
+        cout << "========================================\n";
+
+        // Variable declarations
+        string name, danceStyle;
+        int energy, option;
+        char choice;
+
+        // Dancing Robot object
+        DancingRobot robot;
+
+        // User input
+        cout << "Would you like to make a custom robot? (y/n): ";
+        cin >> choice;
+
+        if (choice == 'y' || choice == 'Y') {
+            cout << "Enter robot name: ";
+            cin >> name;
+            cout << "Enter robot energy level (0-100): ";
+            cin >> energy;
+            cout << "Enter robot dance style: ";
+            cin >> danceStyle;
+            robot = DancingRobot(name, energy, danceStyle);
+        }
+
+        // Menu loop
+        do {
+            cout << "========================================\n";
+            cout << "  Dancing Robot Menu  \n";
+            cout << "========================================\n";
+            cout << "Choose an option: \n1. Get Name\n2. Get Energy Level\n3. Get Dance Style\n4. Dance\n5. Recharge\n6. Change Dance Style\n7. Display Info\n0. Exit:\t";
+            cin >> option;
+            switch (option) {
+                case 1:
+                    robot.getName();
+                    break;
+                case 2:
+                    robot.getEnergy();
+                    break;
+                case 3:
+                    robot.getDanceStyle();
+                    break;
+                case 4:
+                    robot.dance();
+                    break;
+                case 5:
+                    robot.recharge();
+                    break;
+                case 6: {
+                    string newStyle;
+                    cout << "Enter new dance style: ";
+                    cin >> newStyle;
+                    robot.changeDanceStyle(newStyle);
+                    break;
+                }
+                case 7:
+                    robot.displayInfo();
+                    break;
+            }
+        } while (option != 0);
+
+        cout << "Exiting Dancing Robot Simulator.\n";
+        wait();
 
     };
 
@@ -2997,9 +3122,9 @@ public:
 
     class Monster
     {
-
-
     };
+
+    // Create a Monster class. You have the creative freedom to decide what attributes and methods it should have.
     void program61_MonsterClass() {
 
     };
@@ -3007,6 +3132,8 @@ public:
     class Treasure
     {
     };
+
+    // Create a Treasure class. You have the creative freedom to decide what attributes and methods it should have.
     void program62_TreasureClass() {
 
     };
@@ -3104,10 +3231,143 @@ public:
 
     class Employee
     {
+    private:
+        string name, department, position;
+        int employeeID;
+        double salary;
+
+    public:
+        Employee() : name("John Doe"), department("General"), position("Employee"), employeeID(1001), salary(50000.0) {}
+        Employee(string n, string d, string p, int id, double s) : name(n), department(d), position(p), employeeID(id), salary(s) {}
+        // Getters
+        void getName() const { cout << "Name: " << name << endl; }
+        void getDepartment() const { cout << "Department: " << department << endl; }
+        void getPosition() const { cout << "Position: " << position << endl; }
+        void getEmployeeID() const { cout << "Employee ID: " << employeeID << endl; }
+        void getSalary() const { cout << "Salary: $" << salary << endl; }
+        // Setters
+        void setName()
+        {
+            cout << "Enter new name: ";
+            cin >> name;
+        }
+        void setDepartment()
+        {
+            cout << "Enter new department: ";
+            cin >> department;
+        }
+        void setPosition()
+        {
+            cout << "Enter new position: ";
+            cin >> position;
+        }
+        void setEmployeeID()
+        {
+            cout << "Enter new employee ID: ";
+            cin >> employeeID;
+        }
+        void setSalary()
+        {
+            cout << "Enter new salary: ";
+            cin >> salary;
+        }
+        // Display Method
+        void displayInfo() const
+        {
+            cout << "Name: " << name << endl;
+            cout << "Department: " << department << endl;
+            cout << "Position: " << position << endl;
+            cout << "Employee ID: " << employeeID << endl;
+            cout << "Salary: $" << salary << endl;
+        }
     };
 
+    // Create an Employee class. You have the creative freedom to decide what attributes and methods it should have.
+    // I was boring with this one. Just the basics. Getters, Setters, and a display method.
     void program64_EmployeeClass()
     {
+        cout << "\n========================================\n";
+        cout << "  Employee Class Demonstration  \n";
+        cout << "========================================\n";
+
+        // Variable declarations
+        string name, department, position;
+        int employeeID, option;
+        double salary;
+        char choice;
+
+        // User input
+        cout << "Would you like to create a custom employee? (y/n): ";
+        cin >> choice;
+
+        // Create Employee object
+        Employee emp; // Default employee
+
+        // If user wants to create a custom employee
+        if (choice == 'y' || choice == 'Y')
+        {
+            cout << "Enter name: ";
+            cin >> name;
+            cout << "Enter department: ";
+            cin >> department;
+            cout << "Enter position: ";
+            cin >> position;
+            cout << "Enter employee ID: ";
+            cin >> employeeID;
+            cout << "Enter salary: ";
+            cin >> salary;
+
+            // Cheeky lil way to reset employee state
+            emp = Employee(name, department, position, employeeID, salary);
+        }
+
+        // Menu loop
+        do {
+            cout << "========================================\n";
+            cout << "  Employee Menu  \n";
+            cout << "========================================\n";
+            cout << "Choose an option: \n1. Get Name\n2. Get Department\n3. Get Position\n4. Get Employee ID\n5. Get Salary\n6. Set Name\n7. Set Department\n8. Set Position\n9. Set Employee ID\n10. Set Salary\n11. Display Info\n0. Exit:\t";
+            cin >> option;
+            switch (option)
+            {
+            case 1:
+                emp.getName();
+                break;
+            case 2:
+                emp.getDepartment();
+                break;
+            case 3:
+                emp.getPosition();
+                break;
+            case 4:
+                emp.getEmployeeID();
+                break;
+            case 5:
+                emp.getSalary();
+                break;
+            case 6:
+                emp.setName();
+                break;
+            case 7:
+                emp.setDepartment();
+                break;
+            case 8:
+                emp.setPosition();
+                break;
+            case 9:
+                emp.setEmployeeID();
+                break;
+            case 10:
+                emp.setSalary();
+                break;
+            case 11:
+                emp.displayInfo();
+                break;
+            }
+        } while (option != 0);
+
+        cout << "Exiting Employee Demo.\n";
+        wait();
     }
 
     class Movie
@@ -3299,6 +3559,10 @@ public:
         }
     };
 
+    // Create a Movie class. You have the creative freedom to decide what attributes and methods it should have.
+    // I went above and beyond here and implemented a lot of functionality. The user can create a custom movie or use the default
+    // constructor which is set to the Shawshank Redemption. The user can then get and set all attributes of the movie as well as
+    // display all information about the movie.
     void program65_MovieClass()
     {
         cout << "\n========================================\n";
