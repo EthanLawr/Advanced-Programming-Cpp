@@ -1665,8 +1665,135 @@ public:
         wait();
     };
 
-    void program52_TimeMachineClass() {
+    class TimeMachine
+    {
+    private:
+        int year;
+        string model;
+        int charge;
 
+    public:
+        // Constructors
+        TimeMachine() : year(2024), model("CHRONUS project"), charge(100) {}
+        TimeMachine(int tmYear, string tmModel) : year(tmYear), model(tmModel), charge(100) {}
+
+        // Getters
+        void getYear() const
+        {
+            cout << "The current year is: " << year << endl;
+        }
+        void getModel() const
+        {
+            cout << "The model of the Time Machine is: " << model << endl;
+        }
+
+        // Getter for Charge
+        void getCharge() const
+        {
+            cout << "The Time Machine's charge level is: " << charge << "%" << endl;
+        }
+
+        // I got creative here. I thought it would be fun to make it this way.
+        void setYear(int years)
+        {
+            if (abs(years) > charge)
+                cout << "Error: Not enough charge to travel that far. Please charge the machine." << endl;
+            else
+            {
+                year += years;
+                charge -= abs(years);
+                if (years > 0)
+                    cout << "You have traveled " << years << " years into the future. You have " << charge << "% charge left." << endl;
+                else if (years < 0)
+                    cout << "You have traveled " << abs(years) << " years into the past. You have " << charge << "% charge left." << endl;
+                else
+                {
+                    cout << "You are already in the current year. This caused an error and used " << 10 << " years of charge." << endl;
+                    charge -= 10;
+                }
+            }
+        }
+
+        void chargeMachine()
+        {
+            cout << "How long do you want to charge the Time Machine? Each year that you charge will give you 10% charge (Max 100%): ";
+            int years;
+            cin >> years;
+            if (years < 0)
+            {
+                cout << "Error: Cannot charge for negative years." << endl;
+            }
+            else
+            {
+                charge += years * 10;
+                if (charge > 100)
+                    charge = 100;
+                cout << "The Time Machine is now charged to " << charge << "%." << endl;
+            }
+        }
+
+        // Method to display time machine information
+        void displayInfo() const
+        {
+            cout << "Year: " << year << endl;
+            cout << "Model: " << model << endl;
+            cout << "Charge: " << charge << "%" << endl;
+        }
+    };
+    // Create a Time Machine class. You have the creative freedom to decide what attributes and methods it should have.
+    void program52_TimeMachineClass()
+    {
+
+        cout << "\n========================================\n";
+        cout << "  Time Machine Simulator  \n";
+        cout << "========================================\n";
+        // Declare Variables
+        int year, option, years;
+        string model;
+
+        // User Input
+        cout << "Enter the year of the Time Machine: ";
+        cin >> year;
+        cout << "Enter the model of the Time Machine: ";
+        cin >> model;
+
+        // Create Time Machine Object
+        TimeMachine chronus(year, model);
+
+        // Menu Loop
+do
+        {
+            cout << "========================================\n";
+            cout << "  Time Machine Menu  \n";
+            cout << "========================================\n";
+            cout << "Choose an option: \n1. Get Year\n2. Get Model\n3. Get Charge\n4. Time Travel\n5. Charge Machine\n6. Display Info\n0. Exit:\t";
+            switch (option)
+            {
+            case 1:
+                chronus.getYear();
+                break;
+            case 2:
+                chronus.getModel();
+                break;
+            case 3:
+                chronus.getCharge();
+                break;
+            case 4:
+                cout << "Enter how many years to set the Time Machine to travel (Can be negative): ";
+                cin >> years;
+                chronus.setYear(years);
+                break;
+            case 5:
+                chronus.chargeMachine();
+                break;
+            case 6:
+                chronus.displayInfo();
+                break;
+            }
+        } while (option != 0);
+
+        cout << "Exiting Time Machine Simulator.\n";
+        wait();
     };
 
     // Create a Virtual Pet that can be fed, played with, sleeps, and can display its status. Create a class to do so.
@@ -1906,35 +2033,327 @@ public:
         wait();
     }
 
-    void program55_PizzaClass() {
+    class Pizza
+    {
 
+    private:
+        int size;
+        double price;
+        vector<string> toppings;
+
+    public:
+        // Constructors
+        Pizza(int pizzaSize, double pizzaPrice, vector<string> pizzaToppings)
+            : size(pizzaSize), price(pizzaPrice), toppings(pizzaToppings) {}
+        // Getters
+        void getSize()
+        {
+            cout << "Size (inches): " << size << endl;
+        }
+        void getPrice()
+        {
+            cout << "Price: $" << price << endl;
+        }
+        void getToppings()
+        {
+            cout << "Toppings: ";
+            for (const auto &topping : toppings)
+                cout << topping << " ";
+            cout << endl;
+        }
+        // Setters
+        int setSize(int newSize)
+        {
+            size = newSize;
+            return size;
+        }
+        double setPrice(double newPrice)
+        {
+            price = newPrice;
+            return price;
+        }
+        void addTopping(string newTopping)
+        {
+            toppings.push_back(newTopping);
+        }
+        void removeTopping(string toppingToRemove)
+        {
+            // Find the position of the topping to remove
+            auto it = find(toppings.begin(), toppings.end(), toppingToRemove);
+            // If found, remove it
+            if (it != toppings.end())
+                toppings.erase(it);
+        }
+        // Display Method
+        void displayInfo()
+        {
+            cout << "Pizza Size (inches): " << size << "\nPrice: $" << price << "\nToppings: ";
+            for (const auto &topping : toppings)
+                cout << topping << " ";
+            cout << endl;
+        }
     };
 
-    void program56_DogClass() {
+    // Create a Pizza class with methods to get and set the size, price, and toppings.
+    // Content mostly copied from the Taco class above with slight modifications.
+    void program55_PizzaClass()
+    {
+        cout << "\n========================================\n";
+        cout << "  Pizza Class Simulation  \n";
+        cout << "========================================\n";
 
+        // Variable declarations
+        int size;
+        double price;
+        vector<string> toppings;
+        int option;
+
+        // User input
+        cout << "Please enter the size for the pizza: ";
+        cin >> size;
+
+        cout << "Please enter the price for the pizza: ";
+        cin >> price;
+
+        cout << "Please enter the toppings for the pizza (separated by spaces, end with \"end\" to stop adding topping): ";
+        string topping;
+        while (cin >> topping && topping != "end" && topping != "END")
+        {
+            toppings.push_back(topping);
+        }
+
+        // Create Pizza object
+        Pizza pizza(size, price, toppings);
+
+        // Menu loop
+        do
+        {
+            cout << "========================================\n";
+            cout << "  Pizza Menu  \n";
+            cout << "========================================\n";
+            cout << "Choose an option: \n1. Get Size\n2. Get Price\n3. Get Toppings\n4. Set Size\n5. Set Price\n6. Add Topping\n7. Remove Topping\n8. Display Pizza Info\n0. Exit:\t";
+            cin >> option;
+            switch (option)
+            {
+            case 1:
+                pizza.getSize();
+                break;
+            case 2:
+                pizza.getPrice();
+                break;
+            case 3:
+                pizza.getToppings();
+                break;
+            case 4:
+                cout << "Enter new size (inches): ";
+                cin >> size;
+                pizza.setSize(size);
+                break;
+            case 5:
+                cout << "Enter new price: ";
+                cin >> price;
+                pizza.setPrice(price);
+                break;
+            case 6:
+                cout << "Enter topping to add: ";
+                cin >> topping;
+                pizza.addTopping(topping);
+                break;
+            case 7:
+                cout << "Enter topping to remove: ";
+                cin >> topping;
+                pizza.removeTopping(topping);
+                break;
+            case 8:
+                pizza.displayInfo();
+                break;
+            }
+        } while (option != 0);
+
+        cout << "Exiting Pizza Simulator.\n";
+        wait();
+    };
+
+    class Dog
+    {
+    private:
+        string name;
+        int age;
+        string breed;
+        bool friendly;
+
+    public:
+        // Constructor
+        Dog(string name, int age, string breed, bool friendly)
+            : name(name), age(age), breed(breed), friendly(friendly) {}
+
+        // Getter for Name
+        void getName() const
+        {
+            cout << "Name: " << name << endl;
+        }
+
+        // Getter for Age
+        void getAge() const
+        {
+            cout << "Age: " << age << endl;
+        }
+
+        // Getter for Breed
+        void getBreed() const
+        {
+            cout << "Breed: " << breed << endl;
+        }
+
+        // Getter for Friendly
+        bool isFriendly() const
+        {
+            cout << "The dog is" << (friendly ? "" : "not") << " friendly." << endl;
+            return friendly;
+        }
+
+        // Birthday Method to increment age
+        void birthday()
+        {
+            age += 1;
+            cout << "Happy Birthday " << name << "! The good doggo is now " << age << " years old!" << endl;
+        }
+
+        // Setter for Friendly
+        void setFriendly(bool isFriendly) { friendly = isFriendly; }
+
+        // Method to simulate petting the dog
+        void pet() const
+        {
+            if (friendly)
+                cout << name << " wags its tail happily!" << endl;
+            else
+                cout << name << " growls. Please don't pet the dog!" << endl;
+        }
+
+        // Method to display dog information
+        void displayInfo() const
+        {
+            cout << "Name: " << name << endl;
+            cout << "Age: " << age << endl;
+            cout << "Breed: " << breed << endl;
+            cout << "Friendly: " << (friendly ? "Yes" : "No") << endl;
+        }
+    };
+
+    // Create a Dog class. You have the creative will to decide what attributes and methods to include.
+    void program56_DogClass()
+    {
+        cout << "\n========================================\n";
+        cout << "  Dog Class Simulation  \n";
+        cout << "========================================\n";
+
+        // Variable declarations
+        string name, breed;
+        int age, option;
+        bool friendly;
+
+        // User input
+        cout << "Enter dog's name: ";
+        cin >> name;
+
+        cout << "Enter dog's age: ";
+        cin >> age;
+
+        cout << "Enter dog's breed: ";
+        cin >> breed;
+
+        cout << "Is the dog friendly? (1 for Yes, 0 for No): ";
+        cin >> friendly;
+
+        // Create Dog object
+        Dog dog(name, age, breed, friendly);
+
+        // Menu loop
+        do
+        {
+            cout << "========================================\n";
+            cout << "  Dog Menu  \n";
+            cout << "========================================\n";
+            cout << "Choose an option: \n1. Get Name\n2. Get Age\n3. Get Breed\n4. Is Friendly?\n5. Celebrate Birthday\n6. Set new Friendliness\n7. Pet the Dog\n8. Display Info\n0. Exit:\t";
+            switch (option)
+            {
+            case 1:
+                dog.getName();
+                break;
+            case 2:
+                dog.getAge();
+                break;
+            case 3:
+                dog.getBreed();
+                break;
+            case 4:
+                dog.isFriendly();
+                break;
+            case 5:
+                dog.birthday();
+                break;
+            case 6:
+                cout << "Enter new friendliness (0 or 1): ";
+                cin >> friendly;
+                dog.setFriendly(friendly);
+                break;
+            case 7:
+                dog.pet();
+                break;
+            case 8:
+                dog.displayInfo();
+                break;
+            }
+        } while (option != 0);
+
+        cout << "Exiting Dog Simulator.\n";
+        wait();
+    };
+
+    class FastFood
+    {
     };
 
     void program57_FastFoodClass() {
 
     };
 
+    class Rectangle
+    {
+    };
+
     void program58_RectangleClass() {
 
+    };
+
+    class DancingRobot
+    {
     };
 
     void program59_DancingRobotClass() {
 
     };
 
+    class Superhero
+    {
+    };
+
     void program60_SuperheroClass() {
 
     };
 
+    class Monster
+    {
+    };
     void program61_MonsterClass() {
 
     };
 
-    void program63_TreasureClass() {
+    class Treasure
+    {
+    };
+    void program62_TreasureClass() {
 
     };
 
@@ -2254,12 +2673,14 @@ public:
         }
         cout << "========================================\n";
     }
+
     int getUserChoice(int &choice)
     {
         cout << "Enter your choice (1-" << choices.size() - 1 << ") or 0 to return: ";
         cin >> choice;
         return choice;
     }
+
     int executeChoice(int &choice)
     {
         switch (choice)
@@ -2281,54 +2702,58 @@ public:
             return 1;
             break;
         case 5:
-            parent->program53_VirtualPetClass();
+            parent->program52_TimeMachineClass();
             return 1;
             break;
         case 6:
-            parent->program54_TacoClass();
+            parent->program53_VirtualPetClass();
             return 1;
             break;
         case 7:
-            parent->program55_PizzaClass();
+            parent->program54_TacoClass();
             return 1;
             break;
         case 8:
-            parent->program56_DogClass();
+            parent->program55_PizzaClass();
             return 1;
             break;
         case 9:
-            parent->program57_FastFoodClass();
+            parent->program56_DogClass();
             return 1;
             break;
         case 10:
-            parent->program58_RectangleClass();
+            parent->program57_FastFoodClass();
             return 1;
             break;
         case 11:
-            parent->program59_DancingRobotClass();
+            parent->program58_RectangleClass();
             return 1;
             break;
         case 12:
-            parent->program60_SuperheroClass();
+            parent->program59_DancingRobotClass();
             return 1;
             break;
         case 13:
-            parent->program61_MonsterClass();
+            parent->program60_SuperheroClass();
             return 1;
             break;
         case 14:
-            parent->program63_TreasureClass();
+            parent->program61_MonsterClass();
             return 1;
             break;
         case 15:
-            parent->program63_BankAccountClass();
+            parent->program62_TreasureClass();
             return 1;
             break;
         case 16:
-            parent->program64_EmployeeClass();
+            parent->program63_BankAccountClass();
             return 1;
             break;
         case 17:
+            parent->program64_EmployeeClass();
+            return 1;
+            break;
+        case 18:
             parent->program65_MovieClass();
             return 1;
             break;
