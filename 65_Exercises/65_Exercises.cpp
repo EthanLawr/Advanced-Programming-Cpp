@@ -41,6 +41,8 @@
 #include <cctype>
 #include <vector>
 #include <algorithm>
+#include <fstream>
+#include <random>
 
 using namespace std;
 
@@ -1594,9 +1596,98 @@ public:
         wait();
     }
 
-    // Create for a simple game that utilizes a Game class.
-    void program50_Game() {
+    // Grabbed this from Google AI Search. It did not give me a source.
+    bool containsOnlyLetters(const string &str)
+    {
+        for (char c : str)
+            if (!isalpha(static_cast<unsigned char>(c)))
+                return false;
+        // If all characters are alphabets, return true
+        return true;
+    }
 
+    // Create for a simple game that utilizes a Game class.
+    void program50_Game()
+    {
+        cout << "\n========================================\n";
+        cout << "  Simple Game Simulation: Wordle \n";
+        cout << "========================================\n";
+
+        cout << "\nWelcome to the Wordle-like game!\n";
+        cout << "You have 6 attempts to guess a 5-letter word.\n";
+        cout << "After each guess, you'll receive hints:\n";
+        cout << " - Uppercase letters indicate correct letter and position.\n";
+        cout << " - Lowercase letters indicate correct letter but wrong position.\n";
+        cout << " - Underscores (_) indicate incorrect letters.\n";
+
+        // Variable declarations
+        int randomValue, attempts = 6;
+        string guess, line, targetWord;
+        vector<string> wordPool;
+
+        // Wordpool Source: https://darkermango.github.io/5-Letter-words/words.txt
+        // Grabs the word list text file
+        ifstream wordFile("nouns.txt");
+
+        // Checks if the file opened successfully
+        if (!wordFile.is_open())
+        {
+            cerr << "Error: Could not open the word list file." << endl;
+            return;
+        }
+        else
+        {
+            // Loads all lines from the file into the wordPool vector
+            while (getline(wordFile, line))
+                wordPool.push_back(line);
+            // Close the file after reading
+            wordFile.close();
+        }
+
+        // Seed random number generator. Seed is based on current computer time.
+        int randomValue = rand() % wordPool.size();
+        targetWord = wordPool[randomValue];
+
+        for (int attempt = 1; attempt <= attempts; attempt++)
+        {
+
+            cout << "\nAttempt " << attempt << " of " << attempts << ". ";
+            cout << "Here are your clues:\n";
+            cout << "Enter a 5 letter guess: ";
+            cin >> guess;
+
+            // Input validation
+            if (guess.length() != 5 || containsOnlyLetters(guess) == false)
+            {
+                cout << "Please enter a valid 5-letter word." << endl;
+                attempt--;
+                continue;
+            }
+
+            // Check guess against target word and provide feedback
+            string hints = "";
+            for (int i = 0; i < 5; i++)
+            {
+                if (guess[i] == targetWord[i])
+                    hints += toupper(guess[i]); // Correct letter and position
+                else if (targetWord.find(guess[i]) != string::npos)
+                    hints += tolower(guess[i]); // Correct letter, wrong position
+                else
+                    hints += '_'; // Incorrect letter
+            }
+
+            cout << "Hints: " << hints << endl;
+
+            // Check for win condition
+            if (guess == targetWord)
+            {
+                cout << "Congratulations! You've guessed the word correctly!" << endl;
+                break;
+            }
+            // Losing Screen
+            if (attempt == attempts)
+                cout << "You have run out of guesses! The correct word was: " << targetWord << endl;
+        }
     };
 
     class People
@@ -3220,7 +3311,8 @@ public:
     };
 
     // Create a Monster class. You have the creative freedom to decide what attributes and methods it should have.
-    void program61_MonsterClass() {
+    void program61_MonsterClass()
+    {
         cout << "\n========================================\n";
         cout << "  Monster Class Simulation  \n";
         cout << "========================================\n";
@@ -3236,7 +3328,8 @@ public:
         // User input
         cout << "Would you like to create a custom monster? (y/n): ";
         cin >> choice;
-        if (choice == 'y' || choice == 'Y') {
+        if (choice == 'y' || choice == 'Y')
+        {
             cout << "Enter monster name: ";
             cin >> name;
             cout << "Enter monster type: ";
@@ -3255,13 +3348,15 @@ public:
         }
 
         // Menu loop
-        do {
+        do
+        {
             cout << "========================================\n";
             cout << "  Monster Menu  \n";
             cout << "========================================\n";
             cout << "Choose an option: \n1. Get Name\n2. Get Type\n3. Get Habitat\n4. Get Health\n5. Get Attack Power\n6. Get Defense\n7. Get Speed\n8. Set Name\n9. Set Type\n10. Set Habitat\n11. Set Health\n12. Set Attack Power\n13. Set Defense\n14. Set Speed\n15. Display Info\n0. Exit:\t";
             cin >> option;
-            switch (option) {
+            switch (option)
+            {
             case 1:
                 monster.getName();
                 break;
