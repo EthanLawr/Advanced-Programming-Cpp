@@ -1873,6 +1873,7 @@ public:
     // Test a Virtual Pet that can be fed, played with, sleeps, and can display its status.
     void program53_VirtualPetClass()
     {
+        // Taken from my Midterm Exam.
         cout << "\n========================================\n";
         cout << "  Virtual Pet Simulator  \n";
         cout << "========================================\n";
@@ -2642,7 +2643,7 @@ public:
     void program58_RectangleClass()
     {
         cout << "\n========================================\n";
-        cout << "  Rectangle Class Demonstration  \n";
+        cout << "  Rectangle Class Demo  \n";
         cout << "========================================\n";
 
         // Variable declarations
@@ -2703,44 +2704,56 @@ public:
         int energy;
         string danceStyle;
         int danceCount;
+
     public:
         DancingRobot() : name("RoboDancer"), energy(100), danceStyle("Hip Hop"), danceCount(0) {} // Default constructor
         DancingRobot(string robotName, int robotEnergy, string robotDanceStyle)
             : name(robotName), energy(robotEnergy), danceStyle(robotDanceStyle), danceCount(0) {}
-        void getName() const { 
+        void getName() const
+        {
             cout << "Robot Name: " << name << endl;
-         }
-        void getEnergy() const { 
+        }
+        void getEnergy() const
+        {
             cout << "Energy Level: " << energy << endl;
-            }
-        void getDanceStyle() const { 
+        }
+        void getDanceStyle() const
+        {
             cout << "Dance Style: " << danceStyle << endl;
+        }
+        void dance()
+        {
+            if (energy >= 10)
+            {
+                energy -= 10;
+                danceCount++;
+                cout << name << " is dancing in the dancing style of " << danceStyle << "! Energy left: " << energy << endl;
             }
-        void dance() { 
-            if (energy >= 10) {
-                energy -= 10; 
-                danceCount++; 
-                cout << name << " is dancing in the dancing style of " << danceStyle << "! Energy left: " << energy << endl; 
-            } else {
-                cout << name << " is too tired to dance. Please recharge the robot!" << endl; 
+            else
+            {
+                cout << name << " is too tired to dance. Please recharge the robot!" << endl;
             }
         }
 
-        void recharge() {
+        void recharge()
+        {
             energy = 100;
             cout << name << " has been recharged. Energy level is now: " << energy << endl;
         }
 
-        void changeDanceStyle(string newStyle) {
+        void changeDanceStyle(string newStyle)
+        {
             danceStyle = newStyle;
             cout << name << " has changed dance style to: " << danceStyle << endl;
         }
 
-        int getDanceCount() const {
+        int getDanceCount() const
+        {
             return danceCount;
         }
 
-        void displayInfo() const {
+        void displayInfo() const
+        {
             cout << "Robot Name: " << name << endl;
             cout << "Energy Level: " << energy << endl;
             cout << "Dance Style: " << danceStyle << endl;
@@ -2752,7 +2765,8 @@ public:
     // I have decided to make a dancing robot class with methods to get and set the name, energy level, and dance style,
     // make the robot dance (which decreases energy), recharge the robot (which resets energy to 100), change the dance style,
     // and display the robot's information.
-    void program59_DancingRobotClass() {
+    void program59_DancingRobotClass()
+    {
         cout << "\n========================================\n";
         cout << "  Dancing Robot Simulator  \n";
         cout << "========================================\n";
@@ -2769,7 +2783,8 @@ public:
         cout << "Would you like to make a custom robot? (y/n): ";
         cin >> choice;
 
-        if (choice == 'y' || choice == 'Y') {
+        if (choice == 'y' || choice == 'Y')
+        {
             cout << "Enter robot name: ";
             cin >> name;
             cout << "Enter robot energy level (0-100): ";
@@ -2780,44 +2795,46 @@ public:
         }
 
         // Menu loop
-        do {
+        do
+        {
             cout << "========================================\n";
             cout << "  Dancing Robot Menu  \n";
             cout << "========================================\n";
             cout << "Choose an option: \n1. Get Name\n2. Get Energy Level\n3. Get Dance Style\n4. Dance\n5. Recharge\n6. Change Dance Style\n7. Display Info\n0. Exit:\t";
             cin >> option;
-            switch (option) {
-                case 1:
-                    robot.getName();
-                    break;
-                case 2:
-                    robot.getEnergy();
-                    break;
-                case 3:
-                    robot.getDanceStyle();
-                    break;
-                case 4:
-                    robot.dance();
-                    break;
-                case 5:
-                    robot.recharge();
-                    break;
-                case 6: {
-                    string newStyle;
-                    cout << "Enter new dance style: ";
-                    cin >> newStyle;
-                    robot.changeDanceStyle(newStyle);
-                    break;
-                }
-                case 7:
-                    robot.displayInfo();
-                    break;
+            switch (option)
+            {
+            case 1:
+                robot.getName();
+                break;
+            case 2:
+                robot.getEnergy();
+                break;
+            case 3:
+                robot.getDanceStyle();
+                break;
+            case 4:
+                robot.dance();
+                break;
+            case 5:
+                robot.recharge();
+                break;
+            case 6:
+            {
+                string newStyle;
+                cout << "Enter new dance style: ";
+                cin >> newStyle;
+                robot.changeDanceStyle(newStyle);
+                break;
+            }
+            case 7:
+                robot.displayInfo();
+                break;
             }
         } while (option != 0);
 
         cout << "Exiting Dancing Robot Simulator.\n";
         wait();
-
     };
 
     class Superhero
@@ -3122,20 +3139,252 @@ public:
 
     class Monster
     {
+    private:
+        string name, type, habitat;
+        int health, attackPower, defense, speed;
+
+    public:
+        Monster() : name("Dire Wolf"), type("Beast"), habitat("Forest"), health(150), attackPower(15), defense(5), speed(10) {}
+        Monster(string n, string t, string h, int hp, int ap, int def, int spd) : name(n), type(t), habitat(h), health(hp), attackPower(ap), defense(def), speed(spd) {}
+
+        // Getters
+        void getName() const { cout << "Monster Name: " << name << endl; }
+
+        void getType() const { cout << "Monster Type: " << type << endl; }
+
+        void getHabitat() const { cout << "Monster Habitat: " << habitat << endl; }
+
+        void getHealth() const { cout << "Monster Health: " << health << endl; }
+
+        void getAttackPower() const { cout << "Monster Attack Power: " << attackPower << endl; }
+
+        void getDefense() const { cout << "Monster Defense: " << defense << endl; }
+
+        void getSpeed() const { cout << "Monster Speed: " << speed << endl; }
+
+        // Setters
+        void setName()
+        {
+            cout << "Enter new monster name: ";
+            cin >> name;
+        }
+
+        void setType()
+        {
+            cout << "Enter new monster type: ";
+            cin >> type;
+        }
+
+        void setHabitat()
+        {
+            cout << "Enter new monster habitat: ";
+            cin >> habitat;
+        }
+
+        void setHealth()
+        {
+            cout << "Enter new monster health: ";
+            cin >> health;
+        }
+
+        void setAttackPower()
+        {
+            cout << "Enter new monster attack power: ";
+            cin >> attackPower;
+        }
+
+        void setDefense()
+        {
+            cout << "Enter new monster defense: ";
+            cin >> defense;
+        }
+
+        void setSpeed()
+        {
+            cout << "Enter new monster speed: ";
+            cin >> speed;
+        }
+
+        // Display Method
+        void displayInfo() const
+        {
+            // Why didn't I think of this sooner? This is my second to last class for 40-65 Exercises... Facepalm.
+            getName();
+            getType();
+            getHabitat();
+            getHealth();
+            getAttackPower();
+            getDefense();
+            getSpeed();
+        }
     };
 
     // Create a Monster class. You have the creative freedom to decide what attributes and methods it should have.
     void program61_MonsterClass() {
+        cout << "\n========================================\n";
+        cout << "  Monster Class Simulation  \n";
+        cout << "========================================\n";
 
+        // Variable declarations
+        string name, type, habitat;
+        int health, attackPower, defense, speed, option;
+        char choice;
+
+        // Monster object
+        Monster monster;
+
+        // User input
+        cout << "Would you like to create a custom monster? (y/n): ";
+        cin >> choice;
+        if (choice == 'y' || choice == 'Y') {
+            cout << "Enter monster name: ";
+            cin >> name;
+            cout << "Enter monster type: ";
+            cin >> type;
+            cout << "Enter monster habitat: ";
+            cin >> habitat;
+            cout << "Enter monster health: ";
+            cin >> health;
+            cout << "Enter monster attack power: ";
+            cin >> attackPower;
+            cout << "Enter monster defense: ";
+            cin >> defense;
+            cout << "Enter monster speed: ";
+            cin >> speed;
+            monster = Monster(name, type, habitat, health, attackPower, defense, speed);
+        }
+
+        // Menu loop
+        do {
+            cout << "========================================\n";
+            cout << "  Monster Menu  \n";
+            cout << "========================================\n";
+            cout << "Choose an option: \n1. Get Name\n2. Get Type\n3. Get Habitat\n4. Get Health\n5. Get Attack Power\n6. Get Defense\n7. Get Speed\n8. Set Name\n9. Set Type\n10. Set Habitat\n11. Set Health\n12. Set Attack Power\n13. Set Defense\n14. Set Speed\n15. Display Info\n0. Exit:\t";
+            cin >> option;
+            switch (option) {
+            case 1:
+                monster.getName();
+                break;
+            case 2:
+                monster.getType();
+                break;
+            case 3:
+                monster.getHabitat();
+                break;
+            case 4:
+                monster.getHealth();
+                break;
+            case 5:
+                monster.getAttackPower();
+                break;
+            case 6:
+                monster.getDefense();
+                break;
+            case 7:
+                monster.getSpeed();
+                break;
+            case 8:
+                monster.setName();
+                break;
+            case 9:
+                monster.setType();
+                break;
+            case 10:
+                monster.setHabitat();
+                break;
+            case 11:
+                monster.setHealth();
+                break;
+            case 12:
+                monster.setAttackPower();
+                break;
+            case 13:
+                monster.setDefense();
+                break;
+            case 14:
+                monster.setSpeed();
+                break;
+            case 15:
+                monster.displayInfo();
+                break;
+            }
+        } while (option != 0);
+
+        cout << "Exiting Monster Simulator.\n";
+        wait();
     };
 
     class Treasure
     {
+        string name, location, description;
+        double value;
+        bool locked;
+
+    public:
+        Treasure() : name("Golden Chest of Azrael"), value(10000.0), location("Ancient Roman Cave"), description("A shiny gold chest with ancient engravings."), locked(true) {}
+        Treasure(string name, double value, string location, string description, bool locked)
+            : name(name), value(value), location(location), description(description), locked(locked) {}
+
+        // Getters
+        void getName() const { cout << "Treasure Name: " << name << endl; }
+
+        void getValue() const { cout << "Treasure Value: " << value << endl; }
+
+        void getLocation() const { cout << "Treasure Location: " << location << endl; }
+
+        void getDescription() const { cout << "Treasure Description: " << description << endl; }
+
+        void isLocked() const { cout << "Is the treasure locked? " << (locked ? "Yes" : "No") << endl; }
+
+        // Setters
+        void setName()
+        {
+            cout << "Enter new treasure name: ";
+            cin >> name;
+        }
+
+        void setValue()
+        {
+            cout << "Enter new treasure value: ";
+            cin >> value;
+        }
+
+        void setLocation()
+        {
+            cout << "Enter new treasure location: ";
+            cin >> location;
+        }
+
+        void setDescription()
+        {
+            cout << "Enter new treasure description: ";
+            cin >> description;
+        }
+
+        void setLocked()
+        {
+            cout << "Is the treasure locked? (1 for Yes, 0 for No): ";
+            cin >> locked;
+        }
+
+        // Display Method
+        void displayInfo() const
+        {
+            // Why didn't I think of this sooner? This is my second to last class for 40-65 Exercises... Facepalm.
+            getName();
+            getValue();
+            getLocation();
+            getDescription();
+            isLocked();
+        }
     };
 
     // Create a Treasure class. You have the creative freedom to decide what attributes and methods it should have.
-    void program62_TreasureClass() {
-
+    void program62_TreasureClass()
+    {
+        cout << "\n========================================\n";
+        cout << "  Treasure Class Demo  \n";
+        cout << "========================================\n";
     };
 
     // Create a Bank Account Class with methods to deposit, withdraw, and print balance
@@ -3185,8 +3434,9 @@ public:
     // Test a Bank Account Class with methods to deposit, withdraw, and print balance
     void program63_BankAccountClass()
     {
+        // Taken from the Midterm Exam.
         cout << "\n========================================\n";
-        cout << "  Bank Account Class Demonstration  \n";
+        cout << "  Bank Account Class Demo  \n";
         cout << "========================================\n";
 
         string owner;
@@ -3287,7 +3537,7 @@ public:
     void program64_EmployeeClass()
     {
         cout << "\n========================================\n";
-        cout << "  Employee Class Demonstration  \n";
+        cout << "  Employee Class Demo  \n";
         cout << "========================================\n";
 
         // Variable declarations
@@ -3322,7 +3572,8 @@ public:
         }
 
         // Menu loop
-        do {
+        do
+        {
             cout << "========================================\n";
             cout << "  Employee Menu  \n";
             cout << "========================================\n";
@@ -3566,7 +3817,7 @@ public:
     void program65_MovieClass()
     {
         cout << "\n========================================\n";
-        cout << "  Movie Class Demonstration  \n";
+        cout << "  Movie Class Demo  \n";
         cout << "========================================\n";
 
         // Variable declarations
