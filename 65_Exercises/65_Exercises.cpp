@@ -47,7 +47,7 @@
 
 using namespace std;
 
-// Main class containing all 40 exercise programs
+// Main class containing all 65 exercise programs
 class SylvaAssistant
 {
 private:
@@ -62,6 +62,7 @@ private:
     }
 
 public:
+
     // ========================================
     // PROGRAMS 1-20 (Original Set)
     // ========================================
@@ -1865,6 +1866,7 @@ public:
                 charge += years * 10;
                 if (charge > 100)
                     charge = 100;
+                year += years; // Each year of charge also moves the time machine forward by that many years.
                 cout << "The Time Machine is now charged to " << charge << "%." << endl;
             }
         }
@@ -2397,7 +2399,7 @@ public:
 
         // Variable declarations
         string name, breed;
-        int age, option;
+        int age, option = -1;
         bool friendly;
 
         // User input
@@ -2452,9 +2454,11 @@ public:
             case 8:
                 dog.displayInfo();
                 break;
+
+            case 0:
+                break;
             }
         } while (option > 0 || option < 0);
-
         cout << "Exiting Dog Simulator.\n";
         wait();
     };
@@ -3491,10 +3495,14 @@ public:
             cin >> locked;
         }
 
-        void open() {
-            if (locked) {
+        void open()
+        {
+            if (locked)
+            {
                 cout << "The treasure is locked. You need a key to open it." << endl;
-            } else {
+            }
+            else
+            {
                 cout << "You opened the treasure! Inside you find: " << description << " worth $" << value << "!" << endl;
                 value = 0; // Treasure is taken
             }
@@ -3515,7 +3523,7 @@ public:
     // Create a Treasure class. You have the creative freedom to decide what attributes and methods it should have.
     void program62_TreasureClass()
     {
-        cout << "\n========================================\n";
+        cout << "\n====================================== ==\n";
         cout << "  Treasure Class Demo  \n";
         cout << "========================================\n";
 
@@ -4354,7 +4362,7 @@ private:
     map<int, string> choices = {
         {1, "Quiz Game"},
         {2, "T-Shirt Personalization Questionnaire"},
-        {3, "Custom Game"},
+        {3, "Wordle Game"},
         {4, "People Simulator"},
         {5, "Time Machine Simulator"},
         {6, "Virtual Pet Simulator"},
@@ -4944,6 +4952,9 @@ public:
                 category = this->getUserChoice(category);
                 this->executeChoice(category);
                 break;
+            case 0:
+                // Break to exit
+                break;
             default:
                 cout << "Invalid category. Please try again.\n";
                 break;
@@ -4954,7 +4965,7 @@ public:
     void endMenu()
     {
         cout << "\n========================================\n";
-        cout << "  Tha nk you for using SYLVA!\n";
+        cout << "  Thank you for using SYLVA!\n";
         cout << "  Goodbye!\n";
         cout << "========================================\n\n";
     }
@@ -4972,7 +4983,7 @@ int main()
     SylvaAssistant sylva;
     int choice = 0, category = 0;
 
-    // Fix the circular reference:
+    // Define categories and their corresponding submenu classes
     map<int, string> categories = {
         {1, "Number Operations"},
         {2, "Interactive Fun"},
@@ -4982,7 +4993,10 @@ int main()
         {6, "Utilities"},
         {7, "Medical Assistant"},
         {0, "Exit"}};
-    MainMenu sylvaMenu(categories); // Use the local map instead
+
+    // Instantiate MainMenu with categories
+    MainMenu sylvaMenu(categories); 
+    
     // Main program loop - continues until user chooses to exit
     do
     {
