@@ -2557,10 +2557,93 @@ public:
 
     class Rectangle
     {
+        private:
+            double length;
+            double width;
+        public:
+            Rectangle() : length(1.0), width(1.0) {} // Default
+            Rectangle(double l, double w) : length(l), width(w) {}
+            void getLength() const { 
+                cout << "The length of this rectangle is: " << length << endl;
+            }
+            void getWidth() const { 
+                cout << "The width of this rectangle is: " << width << endl;
+            }
+            void setLength() { 
+                double l;
+                cout << "Enter new length: ";
+                cin >> l;
+                length = l;
+            }
+            void setWidth() { 
+                double w;
+                cout << "Enter new width: ";
+                cin >> w;
+                width = w;
+            }
+            void area() const { 
+                cout << "The area of this rectangle is: " << length * width << endl;
+            }
+            void perimeter() const { 
+                cout << "The perimeter of this rectangle is: " << 2 * (length + width) << endl;
+            }
+            void displayInfo() const {
+                cout << "Length: " << length << ", Width: " << width << ", Area: " << length * width << ", Perimeter: " << 2 * (length + width) << endl;
+            }
     };
 
     void program58_RectangleClass() {
+        cout << "\n========================================\n";
+        cout << "  Rectangle Class Demonstration  \n";
+        cout << "========================================\n";
 
+        // Variable declarations
+        double length, width;
+        int option;
+
+        // User input
+        cout << "Enter length of the rectangle: ";
+        cin >> length;
+        cout << "Enter width of the rectangle: ";
+        cin >> width;
+
+        // Create Rectangle Object
+        Rectangle rect(length, width);
+
+        // Menu loop
+        do {
+            cout << "========================================\n";
+            cout << "  Rectangle Menu  \n";
+            cout << "========================================\n";
+            cout << "Choose an option: \n1. Get Length\n2. Get Width\n3. Set Length\n4. Set Width\n5. Calculate Area\n6. Calculate Perimeter\n7. Display Info\n0. Exit:\t";
+            cin >> option;
+            switch(option) {
+                case 1:
+                    rect.getLength();
+                    break;
+                case 2:
+                    rect.getWidth();
+                    break;
+                case 3:
+                    rect.setLength();
+                    break;
+                case 4:
+                    rect.setWidth();
+                    break;
+                case 5:
+                    rect.area();
+                    break;
+                case 6:
+                    rect.perimeter();
+                    break;
+                case 7:
+                    rect.displayInfo();
+                    break;
+            }
+        } while(option != 0);
+
+        cout << "Exiting Rectangle Demo.\n";
+        wait();
     };
 
     class DancingRobot
