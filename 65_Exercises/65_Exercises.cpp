@@ -1740,6 +1740,7 @@ public:
             cout << "Charge: " << charge << "%" << endl;
         }
     };
+
     // Create a Time Machine class. You have the creative freedom to decide what attributes and methods it should have.
     void program52_TimeMachineClass()
     {
@@ -1761,7 +1762,7 @@ public:
         TimeMachine chronus(year, model);
 
         // Menu Loop
-do
+        do
         {
             cout << "========================================\n";
             cout << "  Time Machine Menu  \n";
@@ -2313,10 +2314,245 @@ do
 
     class FastFood
     {
+    private:
+        string restaurantName;
+        vector<int> order;
+        double orderTotal, totalSales;
+        int salesCount;
+
+        map<int, pair<double, string>> menuItems = {
+                // Burgers
+                {1, {5.99, "Classic Cheeseburger"}},
+                {2, {6.49, "Bacon Double Burger"}},
+                {3, {7.29, "BBQ Burger"}},
+                {4, {6.79, "Mushroom Swiss Burger"}},
+                {5, {4.99, "Veggie Burger"}},
+
+                // Sandwiches & Wraps
+                {6, {5.49, "Grilled Chicken Sandwich"}},
+                {7, {4.99, "Crispy Chicken Sandwich"}},
+                {8, {5.79, "Spicy Chicken Wrap"}},
+                {9, {4.79, "Turkey BLT Wrap"}},
+
+                // Sides
+                {10, {2.49, "French Fries"}},
+                {11, {2.99, "Curly Fries"}},
+                {12, {3.29, "Onion Rings"}},
+                {13, {2.19, "Side Salad"}},
+                {14, {1.99, "Coleslaw"}},
+
+                // Tacos & Burritos
+                {15, {2.99, "Beef Taco"}},
+                {16, {3.29, "Chicken Taco"}},
+                {17, {6.49, "Beef Burrito"}},
+                {18, {6.99, "Chicken Burrito"}},
+                {19, {7.49, "Loaded Nachos"}},
+
+                // Pizza
+                {20, {8.99, "Small Pepperoni Pizza"}},
+                {21, {10.99, "Medium Cheese Pizza"}},
+                {22, {12.99, "Large Supreme Pizza"}},
+                {23, {9.99, "Meat Lovers Pizza"}},
+
+                // Combo Meals
+                {24, {9.49, "Burger Combo (Fries + Drink)"}},
+                {25, {9.79, "Chicken Sandwich Combo"}},
+                {26, {10.49, "BBQ Burger Combo"}},
+                {27, {8.99, "Veggie Combo"}},
+
+                // Drinks
+                {28, {1.49, "Bottled Water"}},
+                {29, {1.99, "Soft Drink"}},
+                {30, {2.29, "Iced Tea"}},
+                {31, {2.49, "Milkshake"}},
+                {32, {2.79, "Iced Coffee"}},
+
+                // Desserts
+                {33, {2.99, "Vanilla Ice Cream"}},
+                {34, {3.49, "Chocolate Sundae"}},
+                {35, {3.79, "Apple Pie"}},
+                {36, {4.19, "Brownie Sundae"}},
+                {37, {3.99, "Oreo McFlurry"}}
+            };
+
+    public:
+        FastFood() : restaurantName("McDonalds Inc."), salesCount(0), totalSales(0.0) {}
+        FastFood(string name) : restaurantName(name), salesCount(0), totalSales(0.0){}
+
+
+        // Set Restaurant Name
+        void setRestaurantName(string name)
+        {
+            cout << "Changing restaurant name from " << restaurantName << " to " << name << endl;
+            restaurantName = name;
+        }
+
+        // Add item to order
+        void addItemToOrder(int itemNumber)
+        {
+            if (menuItems.find(itemNumber) != menuItems.end())
+            {
+                order.push_back(itemNumber);
+                orderTotal += menuItems[itemNumber].first;
+                cout << menuItems[itemNumber].second << " added to order. Current order total: $" << orderTotal << endl;
+            }
+            else
+            {
+                cout << "Invalid item number." << endl;
+            }
+        }
+
+        // Remove item from order
+        void removeItemFromOrder(int itemNumber)
+        {
+            auto it = find(order.begin(), order.end(), itemNumber);
+            if (it != order.end())
+            {
+                orderTotal -= menuItems[itemNumber].first;
+                order.erase(it);
+                cout << menuItems[itemNumber].second << " removed from order. Current order total: $" << orderTotal << endl;
+            }
+            else
+            {
+                cout << "Item not found in current order." << endl;
+            }
+        }
+        // Clear current order
+        void clearOrder()
+        {
+            order.clear();
+            orderTotal = 0.0;
+            cout << "Current order has been cleared." << endl;
+        }
+
+        // Display current order
+        void displayOrder()
+        {
+            if (order.empty())
+            {
+                cout << "No items in the current order." << endl;
+                return;
+            }
+
+            cout << "\n--- Current Order ---\n";
+            for (int itemNumber : order)
+            {
+                cout << menuItems[itemNumber].second << " - $" << menuItems[itemNumber].first << endl;
+            }
+            cout << "Total: $" << orderTotal << endl;
+        }
+
+        // Complete order
+        void completeOrder()
+        {
+            if (order.empty())
+            {
+                cout << "No items in order to complete." << endl;
+                return;
+            }
+
+            cout << "\n--- Order Summary ---\n";
+            for (int itemNumber : order)
+            {
+                cout << menuItems[itemNumber].second << " - $" << menuItems[itemNumber].first << endl;
+            }
+            cout << "Total: $" << orderTotal << endl;
+
+            totalSales += orderTotal;
+            salesCount++;
+            order.clear();
+            orderTotal = 0.0;
+
+            cout << "Order completed. Thank you for dining at " << restaurantName << "!" << endl;
+        }
+
+        // Display menu
+        void displayMenu() const
+        {
+            cout << "\n--- " << restaurantName << " Menu ---\n";
+            for (const auto &item : menuItems)
+            {
+                cout << item.first << ". " << item.second.second << " - $" << item.second.first << endl;
+            }
+        }
+
+        // Display total sales
+        void displayInfo() const
+        {
+            cout << "Restaurant Name: " << restaurantName << endl;
+            cout << "Total Sales: $" << totalSales << endl;
+            cout << "Total Orders Served: " << salesCount << endl;
+        }
     };
 
     void program57_FastFoodClass() {
 
+        cout << "\n========================================\n";
+        cout << "  Fast Food Restaurant Simulator  \n";
+        cout << "========================================\n";
+        
+        // Variable declarations
+        int itemNumber, option;
+        string restaurantName;
+
+        // User input
+        cout << "Enter the name of the restaurant: ";
+        cin >> restaurantName;
+
+        // Create Fast Food Object
+        FastFood restaurant(restaurantName);
+
+        // Menu loop
+        do
+        {
+            cout << "========================================\n";
+            cout << "  Fast Food Menu  \n";
+            cout << "========================================\n";
+            cout << "Choose an option: \n1. Display Menu\n2. Add Item to Order\n3. Remove Item from Order\n4. Display Current Order\n5. Complete Order\n6. Clear Current Order\n7. Display Restaurant Info\n8. Set Restaurant Name\n0. Exit:\t";
+            cin >> option;
+            switch (option)
+            {
+            case 1:
+                restaurant.displayMenu();
+                break;
+            case 2:
+                int itemNumber;
+                cout << "Enter item number to add to order: ";
+                cin >> itemNumber;
+                restaurant.addItemToOrder(itemNumber);
+                break;
+            case 3:
+                cout << "Enter item number to remove from order: ";
+                cin >> itemNumber;
+                restaurant.removeItemFromOrder(itemNumber);
+                break;
+            case 4:
+                restaurant.displayOrder();
+                break;
+            case 5:
+                restaurant.completeOrder();
+                break;
+            case 6:
+                restaurant.clearOrder();
+                break;
+            case 7:
+                restaurant.displayInfo();
+                break;
+            case 8:
+            {
+                string newName;
+                cout << "Enter new restaurant name: ";
+                cin >> newName;
+                restaurant.setRestaurantName(newName);
+                break;
+            }
+            default:
+                cout << "Invalid option. Please try again." << endl;
+                break;
+            }
+        } while (option != 0);
+        cout << "Exiting Fast Food Simulator.\n";
+        wait();
     };
 
     class Rectangle
