@@ -43,6 +43,7 @@
 #include <algorithm>
 #include <fstream>
 #include <random>
+#include <filesystem>
 
 using namespace std;
 
@@ -1606,6 +1607,13 @@ public:
         return true;
     }
 
+    // AI made this function for me to get the source file path. I told it the reason for the issue and it was able to find the solution. Claude Sonnet 4.5
+    string getSourceFilePath()
+    {
+        filesystem::path sourcePath(__FILE__);
+        return sourcePath.parent_path().string();
+    }
+
     // Create for a simple game that utilizes a Game class.
     void program50_Game()
     {
@@ -1627,15 +1635,12 @@ public:
 
         // Wordpool Source: https://darkermango.github.io/5-Letter-words/words.txt
         // Grabs the word list text file
-        ifstream wordFile("nouns.txt");
+        string wordFilePath = getSourceFilePath() + "\\nouns.txt";
+        ifstream wordFile(wordFilePath);
 
+        cout << "Trying to open file at: " << wordFilePath << endl;
         // Checks if the file opened successfully
-        if (!wordFile.is_open())
-        {
-            cerr << "Error: Could not open the word list file." << endl;
-            return;
-        }
-        else
+        if (wordFile.is_open())
         {
             // Loads all lines from the file into the wordPool vector
             while (getline(wordFile, line))
@@ -1643,9 +1648,14 @@ public:
             // Close the file after reading
             wordFile.close();
         }
+        else
+        {
+            cerr << "Error: Could not open the word list file." << endl;
+            return;
+        }
 
         // Seed random number generator. Seed is based on current computer time.
-        int randomValue = rand() % wordPool.size();
+        randomValue = rand() % wordPool.size();
         targetWord = wordPool[randomValue];
 
         for (int attempt = 1; attempt <= attempts; attempt++)
@@ -1688,6 +1698,7 @@ public:
             if (attempt == attempts)
                 cout << "You have run out of guesses! The correct word was: " << targetWord << endl;
         }
+        wait();
     };
 
     class People
