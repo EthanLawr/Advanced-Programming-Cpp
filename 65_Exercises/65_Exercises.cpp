@@ -1404,13 +1404,44 @@ public:
     void program43_SolveTwoLinearEquations()
     {
         // No new concepts to note here.
-
+        cout << "\n========================================\n";
+        cout << "  Solve 2 Linear Equations (2x2)  \n";
+        cout << "========================================\n";
         // Variable Initialization
-        double amount;
+        double a1, b1, c1; // Coefficients for equation 1
+        double a2, b2, c2; // Coefficients for equation 2
+        double det, x, y;  // Determinant and solutions
+
+        /*
+        [ a1 b1 ] [ x ] = [ c1 ]
+        [ a2 b2 ] [ y ]   [ c2 ]
+        */
+
+        // User Input
+        cout << "\nFor equations of the form:\n";
+        cout << "a1*x + b1*y = c1\n";
+        cout << "a2*x + b2*y = c2\n";
+        cout << "Enter coefficients a1, b1, c1 for equation 1:\n";
+        cin >> a1 >> b1 >> c1;
+        cout << "Enter coefficients a2, b2, c2 for equation 2:\n";
+        cin >> a2 >> b2 >> c2;
 
         // Calculation
+        det = a1 * b2 - a2 * b1;
+        if (det != 0) // Theorem 4.8 (Unique Solution)
+        {
+            x = (c1 * b2 - c2 * b1) / det;
+            y = (a1 * c2 - a2 * c1) / det;
+        }
+        else
+        {
+            cout << "The equations have no unique solution (determinant is zero)." << endl;
+            wait();
+            return;
+        }
 
         // Display
+        cout << "Solutions:\n x = " << x << "\n y = " << y << "\n";
 
         wait();
     }
@@ -2841,6 +2872,11 @@ public:
         // User input
         cout << "Would you like to create a custom superhero? (y/n): ";
         cin >> input;
+
+        // Create Superhero object
+        Superhero hero; // Default hero is Superman
+
+        // If user wants to create a custom hero
         if (input == "y" || input == "Y")
         {
             cout << "Enter real name: ";
@@ -2870,7 +2906,8 @@ public:
             while (cin >> weak && weak != "end" && weak != "END")
                 weaknesses.push_back(weak);
 
-            Superhero hero(realName, alias, strength, influence, intellect, agility, dexterity, durability, superPowers, weaknesses);
+            // Cheeky lil way to reset hero state
+            hero = Superhero(realName, alias, strength, influence, intellect, agility, dexterity, durability, superPowers, weaknesses);
         }
         // Menu loop
         do
@@ -2960,6 +2997,8 @@ public:
 
     class Monster
     {
+
+
     };
     void program61_MonsterClass() {
 
