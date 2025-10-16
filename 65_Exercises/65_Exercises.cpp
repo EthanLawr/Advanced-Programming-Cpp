@@ -2666,10 +2666,296 @@ public:
 
     class Superhero
     {
+    private:
+        string realName;
+        string alias;
+        int strength, influence, intellect, agility, dexterity, durability;
+        vector<string> superPowers;
+        vector<string> weaknesses;
+
+    public:
+        // Did some research on Superman to fill in the attributes. Hes crazy strong.
+        Superhero() : realName("Clark Kent"), alias("Superman"), strength(100), influence(90), intellect(95), agility(95), dexterity(95), durability(98),
+                      superPowers({"Super strength", "Super speed", "Super agility", "Super reflexes", "Super hearing", "Super longevity",
+                                   "Eternal youth", "Super stamina", "Super intelligence", "Invulnerability", "Heat vision", "Flight", "Freezing breath", "Super breath",
+                                   "Multiple extrasensory and vision powers", "X-ray vision", "Healing factor"}),
+                      weaknesses({"Kryptonite", "Magic", "Red Sun Radiation"}) {}
+        Superhero(string realName, string alias, int strength, int influence, int intellect, int agility, int dexterity, int durability, vector<string> powers, vector<string> weak)
+            : realName(realName), alias(alias), strength(strength), influence(influence), intellect(intellect), agility(agility), dexterity(dexterity), durability(durability),
+              superPowers(powers), weaknesses(weak) {}
+
+        // Getters
+        void getRealName() const { cout << "Real Name: " << realName << endl; }
+
+        void getAlias() const { cout << "Alias: " << alias << endl; }
+
+        void getStrength() const { cout << "Strength: " << strength << endl; }
+
+        void getInfluence() const { cout << "Influence: " << influence << endl; }
+
+        void getIntellect() const { cout << "Intellect: " << intellect << endl; }
+
+        void getAgility() const { cout << "Agility: " << agility << endl; }
+
+        void getDexterity() const { cout << "Dexterity: " << dexterity << endl; }
+
+        void getDurability() const { cout << "Durability: " << durability << endl; }
+
+        void getSuperPowers() const
+        {
+            cout << "Super Powers: ";
+            for (const auto &power : superPowers)
+                cout << power << ", ";
+            cout << endl;
+        }
+
+        void getWeaknesses() const
+        {
+            cout << "Weaknesses: ";
+            for (const auto &weak : weaknesses)
+                cout << weak << ", ";
+            cout << endl;
+        }
+
+        // Setters
+        void setRealName()
+        {
+            // Realized I can just do this to set it in 2 lines instead of 4
+            cout << "Enter a new real name: ";
+            cin >> realName;
+        }
+
+        void setAlias()
+        {
+            cout << "Enter a new alias: ";
+            cin >> alias;
+        }
+
+        void setStrength()
+        {
+            cout << "Enter new strength (0-100): ";
+            cin >> strength;
+        }
+
+        void setInfluence()
+        {
+            cout << "Enter new influence (0-100): ";
+            cin >> influence;
+        }
+
+        void setIntellect()
+        {
+            cout << "Enter new intellect (0-100): ";
+            cin >> intellect;
+        }
+
+        void setAgility()
+        {
+            cout << "Enter new agility (0-100): ";
+            cin >> agility;
+        }
+
+        void setDexterity()
+        {
+            cout << "Enter new dexterity (0-100): ";
+            cin >> dexterity;
+        }
+
+        void setDurability()
+        {
+            cout << "Enter new durability (0-100): ";
+            cin >> durability;
+        }
+
+        void addSuperPower()
+        {
+            string power;
+            cout << "Enter a new super power to add: ";
+            cin >> power;
+            superPowers.push_back(power);
+        }
+
+        void removeSuperPower()
+        {
+            string power;
+            cout << "Enter a super power to remove: ";
+            cin >> power;
+            auto it = find(superPowers.begin(), superPowers.end(), power);
+            if (it != superPowers.end())
+                superPowers.erase(it);
+        }
+
+        void addWeakness()
+        {
+            string weak;
+            cout << "Enter a new weakness to add: ";
+            cin >> weak;
+            weaknesses.push_back(weak);
+        }
+
+        void removeWeakness()
+        {
+            string weak;
+            cout << "Enter a weakness to remove: ";
+            cin >> weak;
+            auto it = find(weaknesses.begin(), weaknesses.end(), weak);
+            if (it != weaknesses.end())
+                weaknesses.erase(it);
+        }
+
+        // AI suggested I add const here. Honestly not sure what it does but it seems to work fine. I'll have to look it up later honestly.
+        void displayInfo() const
+        {
+            cout << "Real Name: " << realName << endl;
+            cout << "Alias: " << alias << endl;
+            cout << "Strength: " << strength << endl;
+            cout << "Influence: " << influence << endl;
+            cout << "Intellect: " << intellect << endl;
+            cout << "Agility: " << agility << endl;
+            cout << "Dexterity: " << dexterity << endl;
+            cout << "Durability: " << durability << endl;
+            cout << "Super Powers: ";
+            for (const auto &power : superPowers)
+                cout << power << ", ";
+            cout << endl;
+            cout << "Weaknesses: ";
+            for (const auto &weak : weaknesses)
+                cout << weak << ", ";
+            cout << endl;
+        }
     };
 
-    void program60_SuperheroClass() {
+    // Create a Superhero class. You have the creative freedom to decide what attributes and methods it should have.
+    // I have decided to give the super hero stats like strength, speed, and intelligence. This gives me a good opportunity to further
+    // practice utilizing cool data types
+    void program60_SuperheroClass()
+    {
+        cout << "\n========================================\n";
+        cout << "  Superhero Class Simulation  \n";
+        cout << "========================================\n";
+        // Variable declarations
+        string realName, alias, input;
+        int strength, influence, intellect, agility, dexterity, durability, option;
+        vector<string> superPowers, weaknesses;
 
+        // User input
+        cout << "Would you like to create a custom superhero? (y/n): ";
+        cin >> input;
+        if (input == "y" || input == "Y")
+        {
+            cout << "Enter real name: ";
+            cin >> realName;
+            cout << "Enter alias: ";
+            cin >> alias;
+            cout << "Enter strength (0-100): ";
+            cin >> strength;
+            cout << "Enter influence (0-100): ";
+            cin >> influence;
+            cout << "Enter intellect (0-100): ";
+            cin >> intellect;
+            cout << "Enter agility (0-100): ";
+            cin >> agility;
+            cout << "Enter dexterity (0-100): ";
+            cin >> dexterity;
+            cout << "Enter durability (0-100): ";
+            cin >> durability;
+
+            cout << "Enter super powers (type 'end' to stop adding): ";
+            string power;
+            while (cin >> power && power != "end" && power != "END")
+                superPowers.push_back(power);
+
+            cout << "Enter weaknesses (type 'end' to stop adding): ";
+            string weak;
+            while (cin >> weak && weak != "end" && weak != "END")
+                weaknesses.push_back(weak);
+
+            Superhero hero(realName, alias, strength, influence, intellect, agility, dexterity, durability, superPowers, weaknesses);
+        }
+        // Menu loop
+        do
+        {
+            cout << "========================================\n";
+            cout << "  Superhero Menu  \n";
+            cout << "========================================\n";
+            cout << "Choose an option: \n1. Get Real Name\n2. Get Alias\n3. Get Strength\n4. Get Influence\n5. Get Intellect\n6. Get Agility\n7. Get Dexterity\n8. Get Durability\n9. Get Super Powers\n10. Get Weaknesses\n11. Set Real Name\n12. Set Alias\n13. Set Strength\n14. Set Influence\n15. Set Intellect\n16. Set Agility\n17. Set Dexterity\n18. Set Durability\n19. Add Super Power\n20. Remove Super Power\n21. Add Weakness\n22. Remove Weakness\n23. Display Info\n0. Exit:\t";
+            cin >> option;
+            switch (option)
+            {
+            case 1:
+                hero.getRealName();
+                break;
+            case 2:
+                hero.getAlias();
+                break;
+            case 3:
+                hero.getStrength();
+                break;
+            case 4:
+                hero.getInfluence();
+                break;
+            case 5:
+                hero.getIntellect();
+                break;
+            case 6:
+                hero.getAgility();
+                break;
+            case 7:
+                hero.getDexterity();
+                break;
+            case 8:
+                hero.getDurability();
+                break;
+            case 9:
+                hero.getSuperPowers();
+                break;
+            case 10:
+                hero.getWeaknesses();
+                break;
+            case 11:
+                hero.setRealName();
+                break;
+            case 12:
+                hero.setAlias();
+                break;
+            case 13:
+                hero.setStrength();
+                break;
+            case 14:
+                hero.setInfluence();
+                break;
+            case 15:
+                hero.setIntellect();
+                break;
+            case 16:
+                hero.setAgility();
+                break;
+            case 17:
+                hero.setDexterity();
+                break;
+            case 18:
+                hero.setDurability();
+                break;
+            case 19:
+                hero.addSuperPower();
+                break;
+            case 20:
+                hero.removeSuperPower();
+                break;
+            case 21:
+                hero.addWeakness();
+                break;
+            case 22:
+                hero.removeWeakness();
+                break;
+            case 23:
+                hero.displayInfo();
+                break;
+            }
+
+        } while (option != 0);
+        cout << "Exiting Superhero Simulator.\n";
+        wait();
     };
 
     class Monster
@@ -2973,7 +3259,7 @@ public:
             cout << endl;
         }
     };
-    
+
     void program65_MovieClass()
     {
         cout << "\n========================================\n";
