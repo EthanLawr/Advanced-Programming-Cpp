@@ -1795,7 +1795,7 @@ public:
                 break;
             }
 
-        } while (option != 0);
+        } while (option > 0 || option < 0);
 
         cout << "Exiting People Simulator.\n";
 
@@ -1886,8 +1886,9 @@ public:
         cout << "  Time Machine Simulator  \n";
         cout << "========================================\n";
         // Declare Variables
-        int year, option, years;
+        int year, years;
         string model;
+        int option = -1;
 
         // User Input
         cout << "Enter the year of the Time Machine: ";
@@ -1905,6 +1906,7 @@ public:
             cout << "  Time Machine Menu  \n";
             cout << "========================================\n";
             cout << "Choose an option: \n1. Get Year\n2. Get Model\n3. Get Charge\n4. Time Travel\n5. Charge Machine\n6. Display Info\n0. Exit:\t";
+            cin >> option;
             switch (option)
             {
             case 1:
@@ -1928,7 +1930,7 @@ public:
                 chronus.displayInfo();
                 break;
             }
-        } while (option != 0);
+        } while (option > 0 || option < 0);
 
         cout << "Exiting Time Machine Simulator.\n";
         wait();
@@ -2019,7 +2021,7 @@ public:
             {
                 pet.Status();
             }
-        } while (option != 0);
+        } while (option > 0 || option < 0);
 
         cout << "Exiting Virtual Pet Simulator.\n";
         wait();
@@ -2115,8 +2117,11 @@ public:
 
         cout << "Please enter the toppings for the taco (separated by spaces, end with \"end\" to stop adding topping): ";
         string topping;
-        while (cin >> topping && topping != "end" || topping != "END")
+        while (true)
         {
+            cin >> topping;
+            if (topping == "end" || topping == "END")
+                break;
             toppings.push_back(topping);
         }
 
@@ -2166,7 +2171,7 @@ public:
                 taco.displayInfo();
                 break;
             }
-        } while (option != 0);
+        } while (option > 0 || option < 0);
 
         cout << "Exiting Taco Simulator.\n";
         wait();
@@ -2256,8 +2261,11 @@ public:
 
         cout << "Please enter the toppings for the pizza (separated by spaces, end with \"end\" to stop adding topping): ";
         string topping;
-        while (cin >> topping && topping != "end" && topping != "END")
+        while (true)
         {
+            cin >> topping;
+            if (topping == "end" || topping == "END")
+                break;
             toppings.push_back(topping);
         }
 
@@ -2307,7 +2315,7 @@ public:
                 pizza.displayInfo();
                 break;
             }
-        } while (option != 0);
+        } while (option > 0 || option < 0);
 
         cout << "Exiting Pizza Simulator.\n";
         wait();
@@ -2415,6 +2423,7 @@ public:
             cout << "  Dog Menu  \n";
             cout << "========================================\n";
             cout << "Choose an option: \n1. Get Name\n2. Get Age\n3. Get Breed\n4. Is Friendly?\n5. Celebrate Birthday\n6. Set new Friendliness\n7. Pet the Dog\n8. Display Info\n0. Exit:\t";
+            cin >> option;
             switch (option)
             {
             case 1:
@@ -2444,7 +2453,7 @@ public:
                 dog.displayInfo();
                 break;
             }
-        } while (option != 0);
+        } while (option > 0 || option < 0);
 
         cout << "Exiting Dog Simulator.\n";
         wait();
@@ -2689,7 +2698,7 @@ public:
                 cout << "Invalid option. Please try again." << endl;
                 break;
             }
-        } while (option != 0);
+        } while (option > 0 || option < 0);
         cout << "Exiting Fast Food Simulator.\n";
         wait();
     };
@@ -2793,7 +2802,7 @@ public:
                 rect.displayInfo();
                 break;
             }
-        } while (option != 0);
+        } while (option > 0 || option < 0);
 
         cout << "Exiting Rectangle Demo.\n";
         wait();
@@ -2933,7 +2942,7 @@ public:
                 robot.displayInfo();
                 break;
             }
-        } while (option != 0);
+        } while (option > 0 || option < 0);
 
         cout << "Exiting Dancing Robot Simulator.\n";
         wait();
@@ -3142,14 +3151,23 @@ public:
 
             cout << "Enter super powers (type 'end' to stop adding): ";
             string power;
-            while (cin >> power && power != "end" && power != "END")
+            while (true)
+            {
+                cin >> power;
+                if (power == "end" || power == "END")
+                    break;
                 superPowers.push_back(power);
+            }
 
             cout << "Enter weaknesses (type 'end' to stop adding): ";
             string weak;
-            while (cin >> weak && weak != "end" && weak != "END")
+            while (true)
+            {
+                cin >> weak;
+                if (weak == "end" || weak == "END")
+                    break;
                 weaknesses.push_back(weak);
-
+            }
             // Cheeky lil way to reset hero state
             hero = Superhero(realName, alias, strength, influence, intellect, agility, dexterity, durability, superPowers, weaknesses);
         }
@@ -3234,7 +3252,7 @@ public:
                 break;
             }
 
-        } while (option != 0);
+        } while (option > 0 || option < 0);
         cout << "Exiting Superhero Simulator.\n";
         wait();
     };
@@ -3414,7 +3432,7 @@ public:
                 monster.displayInfo();
                 break;
             }
-        } while (option != 0);
+        } while (option > 0 || option < 0);
 
         cout << "Exiting Monster Simulator.\n";
         wait();
@@ -3473,6 +3491,15 @@ public:
             cin >> locked;
         }
 
+        void open() {
+            if (locked) {
+                cout << "The treasure is locked. You need a key to open it." << endl;
+            } else {
+                cout << "You opened the treasure! Inside you find: " << description << " worth $" << value << "!" << endl;
+                value = 0; // Treasure is taken
+            }
+        }
+
         // Display Method
         void displayInfo() const
         {
@@ -3491,6 +3518,87 @@ public:
         cout << "\n========================================\n";
         cout << "  Treasure Class Demo  \n";
         cout << "========================================\n";
+
+        // Variable declarations
+        string name, location, description;
+        double value;
+        int option;
+        bool locked;
+
+        // User input
+        cout << "Would you like to create a custom treasure? (y/n): ";
+        char choice;
+        cin >> choice;
+
+        // Create Treasure object
+        Treasure treasure;
+
+        // If user wants to create a custom treasure
+        if (choice == 'y' || choice == 'Y')
+        {
+            cout << "Enter treasure name: ";
+            cin >> name;
+            cout << "Enter treasure value: ";
+            cin >> value;
+            cout << "Enter treasure location: ";
+            cin >> location;
+            cout << "Enter treasure description: ";
+            cin >> description;
+            cout << "Is the treasure locked? (1 for Yes, 0 for No): ";
+            cin >> locked;
+            treasure = Treasure(name, value, location, description, locked);
+        }
+
+        // Menu loop
+        do
+        {
+            cout << "========================================\n";
+            cout << "  Treasure Menu  \n";
+            cout << "========================================\n";
+            cout << "Choose an option: \n1. Get Name\n2. Get Value\n3. Get Location\n4. Get Description\n5. Is Locked?\n6. Set Name\n7. Set Value\n8. Set Location\n9. Set Description\n10. Set Locked\n11. Open the Chest\n12. Display Info\n0. Exit:\t";
+            cin >> option;
+            switch (option)
+            {
+            case 1:
+                treasure.getName();
+                break;
+            case 2:
+                treasure.getValue();
+                break;
+            case 3:
+                treasure.getLocation();
+                break;
+            case 4:
+                treasure.getDescription();
+                break;
+            case 5:
+                treasure.isLocked();
+                break;
+            case 6:
+                treasure.setName();
+                break;
+            case 7:
+                treasure.setValue();
+                break;
+            case 8:
+                treasure.setLocation();
+                break;
+            case 9:
+                treasure.setDescription();
+                break;
+            case 10:
+                treasure.setLocked();
+                break;
+            case 11:
+                treasure.open();
+                break;
+            case 12:
+                treasure.displayInfo();
+                break;
+            }
+        } while (option > 0 || option < 0);
+        cout << "Exiting Treasure Demo.\n";
+        wait();
     };
 
     // Create a Bank Account Class with methods to deposit, withdraw, and print balance
@@ -3578,7 +3686,7 @@ public:
             {
                 account.print();
             }
-        } while (option != 0);
+        } while (option > 0 || option < 0);
 
         cout << "Exiting Bank Account Demo.\n";
 
@@ -3721,7 +3829,7 @@ public:
                 emp.displayInfo();
                 break;
             }
-        } while (option != 0);
+        } while (option > 0 || option < 0);
 
         cout << "Exiting Employee Demo.\n";
         wait();
@@ -4055,7 +4163,7 @@ public:
                 movie.displayInfo();
                 break;
             }
-        } while (option != 0);
+        } while (option > 0 || option < 0);
 
         cout << "Exiting Movie Demo.\n";
         wait();
